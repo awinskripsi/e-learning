@@ -1,0 +1,8 @@
+{
+  "name": "e-learning",
+  "app_id": "",
+  "integrations": {
+    "gulp": {}
+  },
+  "type": "ionic1"
+}
