@@ -1,0 +1,33 @@
+<ion-view view-title="Detail materi">
+  <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+    <p>
+    <ion-item>Judul
+            <span class="item-note">{{judul}}</span>
+    </ion-item>
+    <ion-item>Konten
+            <span class="item-note" ng-bind-html="konten"></span>
+    </ion-item>
+    <ion-item>File
+            <span class="item-note">{{file}}</span>
+    </ion-item>
+    <ion-item>Tanggal
+            <span class="item-note"></br>{{tgl_post}}</span>
+    </ion-item>
+    <ion-item>Matapelajaran
+            <span class="item-note">{{nama_mapel}}</span>
+    </ion-item>
+    <ion-item>Kelas
+            <span class="item-note">{{nama_kelas}}</span>
+    </ion-item>
+    <ion-item>Pengajar
+            <span class="item-note">{{nama}}</span>
+    </ion-item>
+    </p>
+  </ion-content>
+  <ion-bar class="bar bar-footer bar-dark">
+    <div class="button-bar">
+      <a class="button" ui-sref="app.komenmateri">Komentar</a>
+    </div>
+</ion-bar>
+
+</ion-view>

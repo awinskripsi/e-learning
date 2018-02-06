@@ -1,0 +1,40 @@
+<ion-view title="Tambah Materi">
+  <ion-content padding="true" class="has-header" style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+    <form class="list">
+      <ion-list>
+        <label class="item item-input">
+          <span class="input-label">Judul</span>
+          <input type="text" placeholder="ketik judul tugas" ng-model="form.judul">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Konten</span>
+          <textarea placeholder="ketik konten" ng-model="form.konten">
+          </textarea>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">File</span>
+          <input type="text" placeholder="" ng-model="form.file">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Tanggal Posting</span>
+          <input type="date" placeholder="" ng-model="form.tgl_posting">
+        </label>
+      </ion-list>
+      <label class="item item-select">
+        <span class="input-label">Matapelajaran</span>
+        <select>
+          <option></option>
+        </select>
+      </label>
+      <label class="item item-select">
+        <span class="input-label">Pengajar</span>
+        <select></select>
+      </label>
+      <label class="item item-select">
+        <span class="input-label">Kelas</span>
+        <select></select>
+      </label>
+      <button class="button button-dark button-block">Simpan</button>
+    </form>
+  </ion-content>
+</ion-view>

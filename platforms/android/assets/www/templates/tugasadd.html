@@ -1,0 +1,51 @@
+<ion-view title="Tambah Tugas">
+  <ion-content padding="true" class="has-header" style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+    <form class="list">
+      <ion-list>
+        <label class="item item-input">
+          <span class="input-label">Judul</span>
+          <input type="text" placeholder="ketik judul tugas" ng-model="form.judul">
+
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Konten</span>
+          <textarea placeholder="ketik konten" ng-model="form.konten">
+          </textarea>
+        </label>
+
+      <!-- <div class="item item-input-inset">
+      <span class="input-label"><strong>Pilih File</strong></span>
+        <input type="file" accept="pdf/*" ng-model="form.file" onchange="angular.element(this).scope().uploadedFile1(this)">
+      </div> -->
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Tanggal Buat</span>
+          <input type="date" placeholder="" ng-model="form.tgl_buat">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Tanggal Selesai</span>
+          <input type="date" placeholder="" ng-model="form.tgl_selesai">
+        </label>
+      </ion-list>
+      <label class="item item-select">
+        <span class="input-label">Matapelajaran</span>
+        <select>
+          <option ng-repeat="item in mapel" ng-model="form.mapel">{{item.nama_mapel}}</option>
+        </select>
+      </label>
+      <label class="item item-select">
+        <span class="input-label">Pengajar</span>
+        <select>
+          <option ng-repeat="item in pengajar" ng-model="form.pengajar">{{item.nama}}</option>
+        </select>
+      </label>
+      <label class="item item-select">
+        <span class="input-label">Kelas</span>
+        <select>
+          <option ng-repeat="item in kelas" ng-model="form.kelas">{{item.nama_kelas}}</option>
+        </select>
+      </label>
+      <button class="button button-dark button-block" ng-click="insert()">Simpan</button>
+    </form>
+  </ion-content>
+</ion-view>

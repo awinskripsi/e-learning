@@ -1,0 +1,20 @@
+<ion-view view-title="Detail Pengumuman">
+  <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+    <p>
+      <ion-item>Judul
+              <span class="item-note">{{judul}}</span>
+      </ion-item>
+      <ion-item>Konten
+              <span class="item-note">{{konten}}</span>
+      </ion-item>
+      <ion-item>Tanggal Posting
+              <span class="item-note">{{tgl_tam}}</span>
+      </ion-item>
+      <ion-item>file
+              <span class="item-note"><a href="<?php echo base_url(); ?>localhost/elearning-smip/assets/filepengumuman/{{file}}.'.pdf'"
+                download="{{file}}.pdf">{{file}}</a></span>
+      </ion-item>
+    </p>
+
+  </ion-content>
+</ion-view>

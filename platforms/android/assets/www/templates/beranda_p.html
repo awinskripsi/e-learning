@@ -1,0 +1,22 @@
+<ion-view view-title="<i class='icon ion-ios-home'></i><strong> Beranda </strong>">
+  <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+    <ion-list no-border>
+      <!-- <ion-list-header class="list" ng-repeat="x in kelas">
+        <p>Kelas: {{x.nama_kelas}}</p>
+      </ion-list-header> -->
+      <ion-item>
+      <div class="list" ng-repeat="x in beranda">
+
+        <a class="item item" ng-click="detail( x.hari_nama, x.jam_mulai, x.jam_selesai, x.nama_mapel,
+                                              x.nama, x.nama_kelas)">
+          <h2>{{x.hari_nama}}</h2>
+          <p>Jam : {{x.jam_mulai}} - {{x.jam_selesai}}</p>
+          <p>Matapelajaran: {{x.nama_mapel}}</p>
+          <p>Kelas: {{x.nama_kelas}}</p>
+        </a>
+      </div>
+    </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-view>

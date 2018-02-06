@@ -1,0 +1,10 @@
+<ion-view view-title="Manajemen Matapelajaran">
+  <ion-content>
+    <div class="list" ng-repeat="x in mapel">
+
+    <a class="item item-avatar" ng-click="detail(x.mapel_id, x.nama_mapel, x.info, x.status_id)">
+      <h2>{{x.nama_mapel}}</h2>
+    </a>
+</div>
+</ion-content>
+</ion-view>

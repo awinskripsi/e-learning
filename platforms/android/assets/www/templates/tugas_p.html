@@ -1,0 +1,16 @@
+<ion-view view-title="Tugas p">
+  <ion-nav-buttons side="right" class="has-header">
+    <button class="button icon ion-android-add" ng-click="addtugas(x.judul, x.konten, x.tgl_se,  x.tgl_bu,
+                                                            x.file, x.nama_mapel, x.nama, x.nama_kelas)"></button>
+  </ion-nav-buttons>
+  <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+    <div class="list" ng-repeat="x in tugas">
+      <a class="item item-avatar" ng-click="detail(x.judul, x.konten, x.tgl_se,  x.tgl_bu, x.file, x.nama_mapel, x.nama, x.nama_kelas)">
+        <h2><b>{{x.judul}}</b></h2>
+        {{x.nama_mapel}}</br>
+        {{x.nama_kelas}}
+      </a>
+    </div>
+  </ion-content>
+
+</ion-view>

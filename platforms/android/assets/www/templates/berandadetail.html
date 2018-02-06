@@ -1,0 +1,18 @@
+<ion-view view-title="Detail Beranda">
+  <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+      <ion-list>
+        <div class="list" ng-repeat="x in beranda_s" >
+
+          <a class="item item" >
+            <!-- <h2>{{x.hari_nama}}</h2> -->
+            <h2>{{x.nama_mapel}}</h2>
+
+            <p >{{x.jam_mulai}} - {{x.jam_selesai}}</p>
+            <!-- <p>Matapelajaran: {{x.nama_mapel}}</p> -->
+            <p>Pengajar: {{x.nama}}</p>
+
+          </a>
+        </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

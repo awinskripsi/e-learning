@@ -1,0 +1,30 @@
+
+<ion-view view-title="Siswa">
+
+  <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
+
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search kelas" ng-model="search.nama_kelas"/>
+
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search nama siswa" ng-model="search.nama"/>
+
+      </label>
+    </div>
+
+    <div class="list list-inset" ng-repeat="x in siswa | filter:search | limitTo:listlength">
+      <a class="item" ng-click="detail(x.nis, x.nama, x.jenis_kelamin,
+                                x.tempat_lahir, x.tgl_l, x.agama, x.alamat,
+                                x.tahun_masuk, x.status_nama, x.nama_kelas)">
+        <h2>Nama: {{x.nama}}</h2>
+        <p>NIS: {{x.nis}}</p>
+        <p>kelas: {{x.nama_kelas}}</p>
+      </a>
+    </div>
+<!-- </ion-list> -->
+  </ion-content>
+
+</ion-view>

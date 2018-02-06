@@ -1,0 +1,19 @@
+<ion-view view-title="Pengumuman">
+  <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search judul pengumuman" ng-model="search.judul"/>
+      </label>
+    </div>
+
+    <div class="list list-inset" ng-repeat="x in pengumuman | filter:search | limitTo:listlength">
+    <a class="item" ng-click="detail(x.pengumuman_id, x.judul, x.konten, x.tgl_tam, x.file)">
+      <h2>{{x.judul}}</h2>
+      <p>{{x.tgl_tam}}</p>
+    </a>
+</div>
+
+</ion-content>
+</ion-view>

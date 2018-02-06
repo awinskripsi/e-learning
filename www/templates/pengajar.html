@@ -1,0 +1,24 @@
+<ion-view view-title="Pengajar">
+
+  <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search bidang studi" ng-model="search.b_studi"/>
+
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search nama pengajar" ng-model="search.nama"/>
+      </label>
+    </div>
+
+    <div class="list list-inset" ng-repeat="x in pengajar | filter:search | limitTo:listlength">
+    <a class="item " ng-click="detail( x.nuptk, x.nama, x.jenis_kelamin, x.tempat_lahir,
+                                          x.tgl_l, x.alamat, x.status_nama, x.status_kg, x.pend_terakhir,
+                                          x.b_studi, x.tahun_masuk, x.masa_kerja, x.status_nama)">
+      <h2>Nama: {{x.nama}}</h2>
+      <p>NUPTK: {{x.nuptk}}</p>
+      <p>Jenis Kelamin: {{x.jenis_kelamin}}</p>
+    </a>
+</div>
+  </ion-content>
+</ion-view>

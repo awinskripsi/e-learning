@@ -1,0 +1,42 @@
+<ion-view title="Tambah Jawaban">
+  <ion-content padding="true" class="has-header" style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+    <form class="list">
+      <ion-list>
+
+      <div class="item" ng-repeat="login in loginadd">
+        <!-- <label class="item item-input item-stacked-label"> -->
+          <span class="input-label ">Username: {{login.username}}</span>
+          <text type="text" ng-model="form.login_id">
+          </text>
+        <!-- </label> -->
+        </div>
+
+      <div class="item" ng-repeat="t in materiadd">
+      <!-- <label class="item item-input item-stacked-label"> -->
+        <span class="input-label">Judul Materi: {{t.judul}}</span>
+        <text type="text" ng-model="form.materi_id">
+        </text>
+      <!-- </label> -->
+      </div>
+
+      <div class="item" ng-model="form.tgl_posting" >
+          <i></i>
+          Tanggal posting:
+          {{form.tgl_posting| date: "dd-MM-yyyy H:mm"}}
+      </div>
+
+      </div>
+
+
+      <div class="item-input item-stacked-label">
+        <span class="input-label">Komentar:</span>
+        <textarea style="margin: 0px 13px 0px 0px; width: 332px; height: 96px;"
+          placeholder="ketik komentar" ng-model="form.konten">
+        </textarea>
+        <button class="button button-dark" ng-click="insertkomen()">Post</button>
+      </div>
+
+      </ion-list>
+    </form>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,12 @@
+<ion-view view-title="materi">
+  <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+    <div class="list" ng-repeat="x in materi">
+      <a class="item item-avatar" ng-click="detail( x.materi_id, x.judul, x.konten, x.tgl_post, x.file, x.nama_mapel, x.nama, x.nama_kelas)">
+        <h2><b>{{x.judul}}</b></h2>
+        {{x.nama_mapel}}</br>
+        {{x.nama_kelas}}
+      </a>
+    </div>
+  </ion-content>
+
+</ion-view>

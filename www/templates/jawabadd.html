@@ -1,0 +1,44 @@
+<ion-view title="Tambah Jawaban">
+  <ion-content padding="true" class="has-header" style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+    <form class="list">
+      <ion-list>
+        <div class="item" ng-repeat="s in siswaadd">
+        <!-- <label class="item item-input item-stacked-label"> -->
+          <span class="input-label "><b>Nama: </b>{{s.nama}}</span>
+          <text type="text" ng-model="form.siswa_id">
+          </text>
+        <!-- </label> -->
+      </div>
+
+        <div class="item" ng-repeat="t in tugasjawab">
+        <!-- <label class="item item-input item-stacked-label"> -->
+          <span class="input-label"><b>Judul Tugas</b></span>
+          <text type="text" ng-model="form.tugas_id">{{t.judul}}
+          </text>
+        <!-- </label> -->
+
+        <!-- <label class="item item-input item-stacked-label"> -->
+          <span class="input-label"><b>Tanggal Selesai</b></span>
+          <text type="text" ng-model="form.tgl_se">{{t.tgl_selesai}}
+          </text>
+        <!-- </label> -->
+        </div>
+
+        <div class="item" ng-model="form.tgl_buat" >
+            <i></i>
+            Tanggal Buat:
+            {{form.tgl_buat| date: "yyyy-mm-dd H:mm"}}
+        </div>
+
+        <label class="item-input item-stacked-label">
+          <span class="input-label"><b>Konten:</b></span>
+          <textarea style="margin: 0px 13px 0px 0px; width: 332px; height: 96px;" placeholder="ketik konten" ng-model="form.konten">
+          </textarea>
+        </label>
+
+      </ion-list>
+
+      <button class="button button-dark button-block" ng-click="insertjawab()">Simpan</button>
+    </form>
+  </ion-content>
+</ion-view>
