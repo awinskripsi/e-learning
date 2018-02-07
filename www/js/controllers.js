@@ -453,35 +453,35 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
 
       })
 
-      $scope.delete=function(id){
-              sessionStorage.setItem('tugas_id', tugas_id);
-              $scope.tugas_id = sessionStorage.getItem('tugas_id');
+  $scope.delete=function(id){
+          sessionStorage.setItem('tugas_id', tugas_id);
+          // $scope.tugas_id = sessionStorage.getItem('tugas_id');
 
-                  var tugas_id = $scope.tugas_id;
-                  var confirmDelete = $ionicPopup.confirm({
-                      title : 'Message',
-                      template : 'Are You Sure To Delete This Tugas ?'
-                  });
+              var tugas_id = $scope.tugas_id;
+              var confirmDelete = $ionicPopup.confirm({
+                  title : 'Message',
+                  template : 'Are You Sure To Delete This Tugas ?'
+              });
 
-                  confirmDelete.then(function(res) {
-                      str = "http://localhost/api_elearning/deletetugas.php?tugas_id="+$scope.tugas_id;
-                      if(res) {
-                          $http.get(str)
-                          .success(function(response){
-                              $ionicPopup.alert({
-                                  title: 'Message',
-                                  template: 'Delete Succeed'
-                              });
-                              $state.go('app.tugas_p',[],{location:"replace",reload:true});
+              confirmDelete.then(function(res) {
+                  str = "http://localhost/api_elearning/deletetugas.php?tugas_id="+$scope.tugas_id;
+                  if(res) {
+                      $http.get(str)
+                      .success(function(response){
+                          $ionicPopup.alert({
+                              title: 'Message',
+                              template: 'Delete Succeed'
                           });
-                      } else {
-                          console.log('Delete Cancel');
-                      }
-                  });
+                          $state.go('app.tugas_p',[],{location:"replace",reload:true});
+                      });
+                  } else {
+                      console.log('Delete Cancel');
+                  }
+              });
 
-          }
+      }
 
-      })
+  })
 
   .controller('tugasjawabCtrl_p', function($scope, $state, $ionicPopup, $http) {
 
@@ -924,6 +924,35 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       $scope.nama = sessionStorage.getItem('nama');
       $scope.nama_kelas = sessionStorage.getItem('nama_kelas');
     })
+
+    $scope.delete=function(id){
+            sessionStorage.setItem('materi_id', materi_id);
+            // $scope.tugas_id = sessionStorage.getItem('tugas_id');
+
+                var materi_id = $scope.materi_id;
+                var confirmDelete = $ionicPopup.confirm({
+                    title : 'Message',
+                    template : 'Are You Sure To Delete This materi ?'
+                });
+
+                confirmDelete.then(function(res) {
+                    str = "http://localhost/api_elearning/deletemateri.php?materi_id="+$scope.materi_id;
+                    if(res) {
+                        $http.get(str)
+                        .success(function(response){
+                            $ionicPopup.alert({
+                                title: 'Message',
+                                template: 'Delete Succeed'
+                            });
+                            $state.go('app.materi_p',[],{location:"replace",reload:true});
+                        });
+                    } else {
+                        console.log('Delete Cancel');
+                    }
+                });
+
+        }
+
     })
 
     .controller('addMateriCtrl', function($scope, $state, $ionicPopup, $http) {

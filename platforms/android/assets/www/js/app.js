@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -130,6 +130,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+
   .state('app.pengajar', {
     url: '/pengajar',
     views: {
@@ -210,6 +211,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.jawabupload', {
+    url: '/jawabupload',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/jawabupload.html'
+        // controller: 'jawabuploadCtrl'
+      }
+    }
+  })
+
   .state('app.jawabadd', {
     url: '/jawabadd',
     views: {
@@ -245,7 +256,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: 'templates/tugasjawab_p.html',
-        controller: 'tugasCtrl'
+        controller: 'tugasjawabCtrl_p'
+      }
+    }
+  })
+
+  .state('app.tugasupload', {
+    url: '/tugasupload',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/tugasupload.html'
       }
     }
   })
@@ -270,12 +290,62 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.materikomen', {
+    url: '/materikomen',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/materikomen.html',
+        controller: 'materikomenCtrl'
+      }
+    }
+  })
+
+  .state('app.komenadd', {
+    url: '/komenadd',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/komenadd.html',
+        controller: 'addkomenCtrl'
+      }
+    }
+  })
+
+  .state('app.materi_p', {
+    url: '/materi_p',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/materi_p.html',
+        controller: 'materiCtrl_p'
+      }
+    }
+  })
+
+  .state('app.detailmateri_p', {
+    url: '/detailmateri_p',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/materidetail_p.html',
+        controller: 'materiCtrl_p'
+      }
+    }
+  })
+  //
+  // .state('app.materikomen', {
+  //   url: '/materikomen',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/materikomen.html',
+  //       controller: 'materikomenCtrl'
+  //     }
+  //   }
+  // })
+
   .state('app.addmateri', {
     url: '/addmateri',
     views: {
       'menuContent': {
         templateUrl: 'templates/materiadd.html',
-        controller: 'materiCtrl'
+        controller: 'addMateriCtrl'
       }
     }
   })
@@ -284,7 +354,18 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/biodata',
     views: {
       'menuContent': {
-        templateUrl: 'templates/biodata.html'
+        templateUrl: 'templates/biodata.html',
+        controller: 'bioCtrl'
+      }
+    }
+  })
+
+  .state('app.biodata_p', {
+    url: '/biodata_p',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/biodata_p.html',
+        controller: 'bioCtrl_p'
       }
     }
   });

@@ -1,20 +1,21 @@
 
-<ion-view >
-  <ion-bar class="bar bar-header bar-positive">
-    <div  view-title="Siswa">Siswa</div>
-</ion-bar>
-<ion-nav-buttons side="right" class="has-header">
+<ion-view view-title="Siswa">
 
-</ion-nav-buttons>
   <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
 
-          <ion-list class="list-inset">
-            <label class="item item-input">
-                    <i class="icon ion-search"></i>
-                    <input type="text" placeholder="cari"></input>
-                  </label>
-    <div class="list" ng-repeat="x in siswa">
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
 
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search kelas" ng-model="search.nama_kelas"/>
+
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search nama siswa" ng-model="search.nama"/>
+
+      </label>
+    </div>
+
+    <div class="list list-inset" ng-repeat="x in siswa | filter:search | limitTo:listlength">
       <a class="item" ng-click="detail(x.nis, x.nama, x.jenis_kelamin,
                                 x.tempat_lahir, x.tgl_l, x.agama, x.alamat,
                                 x.tahun_masuk, x.status_nama, x.nama_kelas)">
@@ -23,7 +24,7 @@
         <p>kelas: {{x.nama_kelas}}</p>
       </a>
     </div>
-</ion-list>
+<!-- </ion-list> -->
   </ion-content>
 
 </ion-view>

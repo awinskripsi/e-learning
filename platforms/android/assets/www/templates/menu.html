@@ -50,11 +50,19 @@
         <i class="icon  ion-ios-book"></i>
           Tugas
         </ion-item>
-        <ion-item menu-close ui-sref="app.materi" style="font-size: 20px;">
+        <ion-item menu-close ui-sref="app.materi" ng-if="materi" style="font-size: 20px;">
         <i class="icon ion-ios-bookmarks"></i>
           Materi
         </ion-item>
-        <ion-item menu-close ui-sref="app.biodata" style="font-size: 20px;">
+        <ion-item menu-close ui-sref="app.materi_p" ng-if="materi_p" style="font-size: 20px;">
+        <i class="icon ion-ios-bookmarks"></i>
+          Materi
+        </ion-item>
+        <ion-item menu-close ui-sref="app.biodata" ng-if="bio" style="font-size: 20px;">
+        <i class="icon ion-ios-body"></i>
+          Biodata
+        </ion-item>
+        <ion-item menu-close ui-sref="app.biodata_p" ng-if="bio_p" style="font-size: 20px;">
         <i class="icon ion-ios-body"></i>
           Biodata
         </ion-item>

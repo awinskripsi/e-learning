@@ -15,26 +15,27 @@
           <span class="input-label">File</span>
           <input type="text" placeholder="" ng-model="form.file">
         </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Tanggal Posting</span>
-          <input type="date" placeholder="" ng-model="form.tgl_posting">
-        </label>
+        <div class="item" ng-model="form.tgl_posting" >
+            <i></i>
+            Tanggal Posting:
+            {{form.tgl_posting| date: "yyyy-MM-dd H:mm"}}
+        </div>
       </ion-list>
       <label class="item item-select">
         <span class="input-label">Matapelajaran</span>
-        <select>
-          <option></option>
+        <select ng-model="form.mapel">
+          <option ng-repeat="item in mapel" value="{{item.mapel_id}}">{{item.nama_mapel}}</option>
         </select>
       </label>
-      <label class="item item-select">
-        <span class="input-label">Pengajar</span>
-        <select></select>
-      </label>
+
       <label class="item item-select">
         <span class="input-label">Kelas</span>
-        <select></select>
+        <select ng-model="form.kelas">
+          <option ng-repeat="item in kelas" value="{{item.kelas_id}}">{{item.nama_kelas}}</option>
+        </select>
       </label>
-      <button class="button button-dark button-block">Simpan</button>
+
+      <button class="button button-dark button-block" ng-click="insert()">Simpan</button>
     </form>
   </ion-content>
 </ion-view>
