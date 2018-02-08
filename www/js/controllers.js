@@ -885,7 +885,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       console.log('materi show p',$scope.materi_p);
     })
 
-    $scope.detail=function(materi_id, judul, konten, tgl_post, file, nama_mapel, nama, nama_kelas){
+    $scope.detail=function(materi_id, judul, konten, tgl_post , file , nama_mapel, nama, nama_kelas){
       sessionStorage.setItem('materi_id', materi_id);
       sessionStorage.setItem('judul', judul);
       sessionStorage.setItem('konten', konten);
@@ -902,10 +902,18 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       $scope.konten = sessionStorage.getItem('konten');
       $scope.tgl_post = sessionStorage.getItem('tgl_post');
       $scope.file = sessionStorage.getItem('file');
+      $scope.url_file = "http://localhost/elearning-smip/assets/filemateri/"+sessionStorage.getItem('file');
+      $scope.file = sessionStorage.getItem('file');
       $scope.nama_mapel = sessionStorage.getItem('nama_mapel');
       $scope.nama = sessionStorage.getItem('nama');
       $scope.nama_kelas = sessionStorage.getItem('nama_kelas');
     })
+
+    $scope.openInExternalBrowser = function()
+          {
+           // Open in external browser
+           window.open($scope.url_file,'_system','location=yes');
+          };
 
     $scope.delete=function(id){
             sessionStorage.setItem('materi_id', materi_id);
@@ -965,11 +973,15 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
         if (
           $scope.form.judul &&
           $scope.form.konten &&
+          $scope.files1 &&
           $scope.form.tgl_posting &&
           $scope.form.mapel &&
           $scope.form.pengajar_id &&
           $scope.form.kelas
         ) {
+
+          $scope.form.file=$scope.files1[0];
+
           $http({
             method : "POST",
             url : "http://localhost/api_elearning/addmateri.php",
@@ -978,6 +990,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
               var formData = new FormData();
               formData.append("judul", $scope.form.judul);
               formData.append("konten", $scope.form.konten);
+              formData.append("file", $scope.form.file);
               formData.append("tgl_posting", $scope.form.tgl_posting);
               formData.append("mapel_id", $scope.form.mapel);
               formData.append("pengajar_id", $scope.form.pengajar_id);
@@ -1009,6 +1022,25 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
                   });
         }
       };
+
+      $scope.uploadedFile1=function(element)
+  {
+
+      $scope.currentFile = element.files[0];
+      var reader = new FileReader();
+
+      reader.onload = function(event) {
+      var output = document.getElementById('output');
+      output.src = URL.createObjectURL(element.files[0]);
+
+      $scope.image_source = event.target.result
+      $scope.$apply(function($scope){
+        $scope.files1 = element.files;
+      });
+      }
+      reader.readAsDataURL(element.files[0]);
+      }
+
       angular.element(document).ready(function(){
         $scope.form.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
       })
