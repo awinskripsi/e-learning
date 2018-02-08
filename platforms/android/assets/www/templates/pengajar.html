@@ -2,14 +2,13 @@
 
   <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
     <div class="bar bar-header item-input-inset">
-      <label class="item-input-wrapper">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Search bidang studi" ng-model="search.b_studi"/>
 
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Search nama pengajar" ng-model="search.nama"/>
-      </label>
-    </div>
+      <div class="bar bar-header item-input-inset">
+        <label class="item-input-wrapper">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="text" placeholder="Search pengajar" ng-model="search"/>
+        </label>
+      </div>
 
     <div class="list list-inset" ng-repeat="x in pengajar | filter:search | limitTo:listlength">
     <a class="item " ng-click="detail( x.nuptk, x.nama, x.jenis_kelamin, x.tempat_lahir,
