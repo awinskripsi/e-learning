@@ -289,10 +289,18 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       $scope.tgl_bu = sessionStorage.getItem('tgl_bu');
       $scope.tgl_se = sessionStorage.getItem('tgl_se');
       $scope.file = sessionStorage.getItem('file');
+      $scope.url_file = "http://localhost/elearning-smip/assets/filetugas/"+sessionStorage.getItem('file');
       $scope.nama_mapel = sessionStorage.getItem('nama_mapel');
       $scope.nama = sessionStorage.getItem('nama');
       $scope.nama_kelas = sessionStorage.getItem('nama_kelas');
     })
+
+    $scope.openInExternalBrowser = function()
+          {
+           // Open in external browser
+           window.open($scope.url_file,'_system','location=yes');
+          };
+
     })
 
     .controller('tugasjawabCtrl', function($scope, $state, $ionicPopup, $http) {
@@ -769,10 +777,18 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       $scope.konten = sessionStorage.getItem('konten');
       $scope.tgl_post = sessionStorage.getItem('tgl_post');
       $scope.file = sessionStorage.getItem('file');
+      $scope.url_file = "http://localhost/elearning-smip/assets/filemateri/"+sessionStorage.getItem('file');
       $scope.nama_mapel = sessionStorage.getItem('nama_mapel');
       $scope.nama = sessionStorage.getItem('nama');
       $scope.nama_kelas = sessionStorage.getItem('nama_kelas');
     })
+
+    $scope.openInExternalBrowser = function()
+          {
+           // Open in external browser
+           window.open($scope.url_file,'_system','location=yes');
+          };
+
     })
 
   .controller('materikomenCtrl', function($scope, $state, $ionicPopup, $http) {
