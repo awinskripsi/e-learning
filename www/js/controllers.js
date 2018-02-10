@@ -314,7 +314,8 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       console.log('jawaban',$scope.jawaban);
       })
 
-    $scope.detailjawab=function(tugas_id, konten, tgl_bu, nama, file){
+    $scope.detailjawab=function(nama, tugas_id, file,  tgl_bu, konten){
+      sessionStorage.setItem('nama', nama);
       sessionStorage.setItem('tugas_id', tugas_id);
       sessionStorage.setItem('konten', konten);
       sessionStorage.setItem('tgl_bu', tgl_bu);
@@ -323,93 +324,128 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       $state.go('app.jawabtugasdetail',{},{reload:true});
     }
     angular.element(document).ready(function(){
+      $scope.nama = sessionStorage.getItem('nama');
       $scope.tugas_id = sessionStorage.getItem('tugas_id');
-      // $scope.judul = sessionStorage.getItem('judul');
-      $scope.konten = sessionStorage.getItem('konten');
       $scope.tgl_bu = sessionStorage.getItem('tgl_bu');
       $scope.file = sessionStorage.getItem('file');
-      $scope.nama = sessionStorage.getItem('nama');
+      $scope.url_file = "http://localhost/elearning-smip/assets/filejawaban/"+sessionStorage.getItem('file');
+      $scope.konten = sessionStorage.getItem('konten');
     })
-    })
+
+    $scope.openInExternalBrowser = function()
+          {
+           // Open in external browser
+           window.open($scope.url_file,'_system','location=yes');
+          };
+
+  })
 
     .controller('addJawabCtrl', function($scope, $state, $ionicPopup, $http) {
 
-      $scope.tugas_id = sessionStorage.getItem('tugas_id');
-      $scope.siswa_id = sessionStorage.getItem('loggedin_siswa');
-      $scope.tgl_se = sessionStorage.getItem('tgl_se');
+          $scope.tugas_id = sessionStorage.getItem('tugas_id');
+          $scope.siswa_id = sessionStorage.getItem('loggedin_siswa');
+          $scope.tgl_se = sessionStorage.getItem('tgl_se');
 
-      $http.get('http://localhost/api_elearning/gettugasadd.php?tugas_id='+$scope.tugas_id)
-      .then(function(response){
-        $scope.tugasjawab = response.data;
-        console.log('jawab tugas_id',$scope.tugasjawab);
-      })
-
-      $http.get('http://localhost/api_elearning/getsiswaadd.php?siswa_id='+$scope.siswa_id)
-      .then(function(response){
-        $scope.siswaadd = response.data;
-        console.log('jawab siswa',$scope.siswaadd);
-      })
-
-      $scope.form = {};
-      $scope.form.tgl_buat = new Date();
-      $scope.insertjawab = function () {
-        console.log('jawaban',$scope.form);
-        if (
-          $scope.form.siswa_id &&
-          $scope.form.tugas_id &&
-          $scope.form.tgl_buat &&
-          $scope.form.tgl_se &&
-          $scope.form.konten
-        ) {
-          $http({
-            method : "POST",
-            url : "http://localhost/api_elearning/addjawab.php",
-            proceessData:false,
-            transformRequest:function(data){
-              var formData = new FormData();
-              formData.append("siswa_id", $scope.form.siswa_id);
-              formData.append("tugas_id", $scope.form.tugas_id);
-              formData.append("tgl_buat", $scope.form.tgl_buat);
-              formData.append("tgl_se", $scope.form.tgl_se);
-              formData.append("konten", $scope.form.konten);
-              console.log('send jawab php',$scope.form);
-              return formData;
-            },
-            data : $scope.form,
-            headers: {
-              'Content-Type' : undefined
-            }
-          }). success(function(data){
-            $ionicPopup.alert({
-                title: 'Message',
-                template: '<p>' +(data)+ '</p>'
-            });
-
-            $state.go('app.jawabtugas',[],{location:"replace",reload:true});
-          }).error(function(){
-              $ionicPopup.alert({
-                      title: 'Tambah Data Gagal',
-                      template: 'Gagal Hore'
-                  });
+          $http.get('http://localhost/api_elearning/gettugasadd.php?tugas_id='+$scope.tugas_id)
+          .then(function(response){
+            $scope.tugasjawab = response.data;
+            console.log('jawab tugas_id',$scope.tugasjawab);
           })
-        } else{
-            $ionicPopup.alert({
-                      title: 'Waduh',
-                      template: 'Harus benar mengisi data'
-                  });
-        }
-      };
 
-      angular.element(document).ready(function(){
-        $scope.form.tugas_id = sessionStorage.getItem('tugas_id');
-        $scope.form.siswa_id = sessionStorage.getItem('loggedin_siswa');
-        $scope.form.tgl_se = sessionStorage.getItem('tgl_se');
-        $scope.konten = sessionStorage.getItem('konten');
-        $scope.tgl_buat = sessionStorage.getItem('tgl_buat');
-        $scope.file = sessionStorage.getItem('file');
-        $scope.nama = sessionStorage.getItem('nama');
-      })
-    })
+          $http.get('http://localhost/api_elearning/getsiswaadd.php?siswa_id='+$scope.siswa_id)
+          .then(function(response){
+            $scope.siswaadd = response.data;
+            console.log('jawab siswa',$scope.siswaadd);
+          })
+
+          $scope.form = {};
+          $scope.files = [];
+
+          $scope.form.tgl_buat = new Date();
+          $scope.insert = function () {
+            console.log('jawaban',$scope.form);
+            if (
+              $scope.form.siswa_id &&
+              $scope.form.tugas_id &&
+              $scope.form.tgl_buat &&
+              $scope.form.tgl_se &&
+              $scope.form.konten&&
+              $scope.files1
+            ) {
+
+            $scope.form.file=$scope.files1[0];
+
+              $http({
+                method : "POST",
+                url : "http://localhost/api_elearning/addjawab.php",
+                proceessData:false,
+                transformRequest:function(data){
+                  var formData = new FormData();
+                  formData.append("siswa_id", $scope.form.siswa_id);
+                  formData.append("tugas_id", $scope.form.tugas_id);
+                  formData.append("tgl_buat", $scope.form.tgl_buat);
+                  formData.append("tgl_se", $scope.form.tgl_se);
+                  formData.append("file", $scope.form.file);
+                  formData.append("konten", $scope.form.konten);
+                  console.log('send jawab php',$scope.form);
+                  return formData;
+                },
+                data : $scope.form,
+                headers: {
+                  'Content-Type' : undefined
+                }
+              }). success(function(data){
+                $ionicPopup.alert({
+                    title: 'Message',
+                    template: '<p>' +(data)+ '</p>'
+                });
+
+                $state.go('app.jawabtugas',[],{location:"replace",reload:true});
+              }).error(function(){
+                  $ionicPopup.alert({
+                          title: 'Tambah Data Gagal',
+                          template: 'Gagal Hore'
+                      });
+              })
+            } else{
+                $ionicPopup.alert({
+                          title: 'Waduh',
+                          template: 'Harus benar mengisi data'
+                      });
+            }
+          };
+
+          angular.element(document).ready(function(){
+            $scope.form.tugas_id = sessionStorage.getItem('tugas_id');
+            $scope.form.siswa_id = sessionStorage.getItem('loggedin_siswa');
+            $scope.form.tgl_se = sessionStorage.getItem('tgl_se');
+            $scope.konten = sessionStorage.getItem('konten');
+            $scope.tgl_buat = sessionStorage.getItem('tgl_buat');
+            $scope.file = sessionStorage.getItem('file');
+            $scope.nama = sessionStorage.getItem('nama');
+          })
+
+          $scope.uploadedFile1=function(element)
+          {
+          $scope.currentFile = element.files[0];
+          var reader = new FileReader();
+
+          reader.onload = function(event) {
+          var output = document.getElementById('output');
+          output.src = URL.createObjectURL(element.files[0]);
+
+          $scope.image_source = event.target.result
+          $scope.$apply(function($scope){
+          $scope.files1 = element.files;
+          });
+          }
+          reader.readAsDataURL(element.files[0]);
+          }
+
+        })
+
+
+
 
     //TUGAS PENGAJAR
     .controller('tugasCtrl_p', function($scope, $state, $ionicPopup, $http) {
@@ -1040,7 +1076,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       };
 
       $scope.uploadedFile1=function(element)
-  {
+      {
 
       $scope.currentFile = element.files[0];
       var reader = new FileReader();
