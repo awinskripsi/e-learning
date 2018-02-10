@@ -1,0 +1,20 @@
+<ion-view view-title="Komentar">
+  <ion-nav-buttons side="right" class="has-header">
+    <button class="button icon ion-android-add" ui-sref=" app.komenadd "></button>
+  </ion-nav-buttons>
+  <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+
+  <div class="list card" ng-repeat="x in komen" >
+    <div class="item item">
+      <h2>{{x.username}}</h2>
+      <p>{{x.tgl_post}}</p>
+    </div>
+    <div class="item item-body">
+      <p ng-bind-html="x.konten_komen">
+      </p>
+    </div>
+  </div>
+
+  </ion-content>
+
+</ion-view>

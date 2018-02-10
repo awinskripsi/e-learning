@@ -1,0 +1,124 @@
+<ion-view title="Tambah Tugas">
+  <ion-content padding="true" class="has-header" style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+    <form class="list" style="background-color: #fff">
+    <label class="item item-input item-stacked-label">
+      <span class="input-label" for="judul"><strong>Judul</strong></span>
+      <input type="text" name="judul" placeholder="Judul Tugas" ng-model="form.judul">
+    </label>
+
+    <label class="item item-input item-stacked-label">
+      <span class="input-label" for="konten"><strong>Konten</strong></span>
+      <textarea type="text" name="konten" placeholder="Konten" ng-model="form.konten">
+      </textarea>
+    </label>
+
+   <label class="item item-input">
+      <span class="input-label" for="file"><strong>File Tugas</strong></span>
+      <input type="file" name="file" placeholder="Konten" ng-model="form.file" onchange="angular.element(this).scope().uploadedFile1(this)">
+   </label>
+
+   <div class="item item-input-inset" style="padding: 0px;">
+      <p id="output"></p>
+   </div>
+
+    <div class="item item-icon-left" ion-datetime-picker ng-model="form.tgl_buat">
+        <i class="icon ion-ios-calendar positive"></i>
+        Tanggal Mulai:
+        <strong>{{form.tgl_buat| date: "yyyy-MM-dd H:mm"}}</strong>
+    </div>
+
+    <div class="item item-input">
+        Tanggal Selesai:
+      </div>
+      <label class="item item-input">
+        <span class="input-label">Tahun</span>
+        <input type="number" maxlength="4" placeholder="2018" ng-model="form.th_selesai">
+      </label>
+
+      <label class="item item-input item-select">
+          <div class="input-label">
+            Bulan
+          </div>
+        <select ng-model="form.b_selesai" style="width: 200px; height: 40px;">
+          <option disabled selected value>Pilih Bulan</option>
+                <option value="01">Januari</option>
+                <option value="02">Februari</option>
+                <option value="03">Maret</option>
+                <option value="04">April</option>
+                <option value="05">Mei</option>
+                <option value="06">Juni</option>
+                <option value="07">Juli</option>
+                <option value="08">Agustus</option>
+                <option value="09">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Desember</option>
+        </select>
+      </label>
+
+      <label class="item item-input item-select">
+          <div class="input-label">
+            Tanggal
+          </div>
+
+        <select ng-model="form.t_selesai" style="width: 200px; height: 40px;">
+          <option disabled selected value>Pilih Tanggal</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+        </select>
+      </label>
+    </div>
+
+    <label class="item item-input">
+      <span class="input-label" for="mapel"><strong>Mata Pelajaran</strong></span>
+      <select type="text" name="mapel" ng-model="form.mapel">
+      <option disabled selected value>--Select Mata Pelajaran--</option>
+      <option ng-repeat="item in mapel" value="{{item.mapel_id}}">{{item.nama_mapel}}</option>
+      </select>
+    </label>
+
+    <label class="item item-input">
+      <span class="input-label" for="kelas"><strong>Kelas</strong></span>
+      <select type="text" name="kelas" ng-model="form.kelas">
+      <option disabled selected value>--Select Kelas--</option>
+      <option ng-repeat="item in kelas" value="{{item.kelas_id}}">{{item.nama_kelas}}</option>
+      </select>
+    </label>
+
+   <div class="button-bar" style="background: #0066ff;">
+      <input type="reset" class="button button-assertive button-block ion-android-close" style="font-size: 20px;" value="Reset">
+      <div class="spacer" style="width: 5px;"></div>
+      <button class="button button-balanced  button-block" ng-click="insert()" style="font-size: 20px;"> Submit </button>
+    </div>
+  </form>
+  </ion-content>
+</ion-view>

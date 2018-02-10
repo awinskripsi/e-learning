@@ -1,0 +1,35 @@
+<ion-view view-title="Detail materi">
+  <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
+    <p>
+    <ion-item>Judul
+            <span class="item-note">{{judul}}</span>
+    </ion-item>
+    <ion-item>Konten
+            <span class="item-note" ng-bind-html="konten"></span>
+    </ion-item>
+    <ion-item>File
+            <a class="button-success" style="float: right;" ng-click="openInExternalBrowser()">Download File</a>
+    </ion-item>
+    <ion-item>Tanggal
+            <span class="item-note"></br>{{tgl_post}}</span>
+    </ion-item>
+    <ion-item>Matapelajaran
+            <span class="item-note">{{nama_mapel}}</span>
+    </ion-item>
+    <ion-item>Kelas
+            <span class="item-note">{{nama_kelas}}</span>
+    </ion-item>
+    <ion-item>Pengajar
+            <span class="item-note">{{nama}}</span>
+    </ion-item>
+    </p>
+  </ion-content>
+  <ion-bar class="bar bar-footer bar-dark">
+    <div class="button-bar">
+      <a class="button" ui-sref="app.editmateri">Edit</a>
+      <a class="button" ui-sref="app.materikomen">Komentar</a>
+      <a class="button" ng-click="delete()">Delete</a>
+    </div>
+</ion-bar>
+
+</ion-view>
