@@ -8,7 +8,7 @@
           <i class="icon ion-search placeholder-icon"></i>
           <input type="text" placeholder="Search pengajar" ng-model="search"/>
         </label>
-      </div>
+      </div></div>
 
     <div class="list list-inset" ng-repeat="x in pengajar | filter:search | limitTo:listlength">
     <a class="item " ng-click="detail( x.nuptk, x.nama, x.jenis_kelamin, x.tempat_lahir,
@@ -19,5 +19,6 @@
       <p>Jenis Kelamin: {{x.jenis_kelamin}}</p>
     </a>
 </div>
+
   </ion-content>
 </ion-view>

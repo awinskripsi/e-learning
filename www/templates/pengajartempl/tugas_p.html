@@ -5,11 +5,20 @@
   <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
 
     <div class="bar bar-header item-input-inset">
-      <label class="item-input-wrapper">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Search tugas" ng-model="search"/>
-      </label>
+
+      <div class="bar bar-header item-input-inset">
+        <label class="item-input-wrapper">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="text" placeholder="Search tugas" ng-model="search"/>
+        </label>
+      </div>
     </div>
+
+    <!-- <ion-refresher (ionRefresh)="doRefresh(tugas)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher> -->
+
+
 
     <div class="list" ng-repeat="x in tugas_p | filter:search | limitTo:listlength">
       <a class="item" ng-click="detail(x.tugas_id, x.judul, x.konten, x.tgl_bu ,
@@ -21,6 +30,8 @@
         {{x.nama_kelas}}
       </a>
     </div>
+
+
   </ion-content>
 
 </ion-view>

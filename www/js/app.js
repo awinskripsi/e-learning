@@ -75,7 +75,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
   })
 
   .state('app.beranda_p', {
-    // cache: false,
+    cache: false,
     url: '/beranda_p',
     views: {
       'menuContent': {
@@ -97,7 +97,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
   })
 
   .state('app.pengumuman', {
-    // cache: false,
+    cache: false,
     url: '/pengumuman',
     views: {
       'menuContent': {
@@ -119,7 +119,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
   })
 
   .state('app.siswa', {
-    // cache: false,
+    cache: false,
     url: '/siswa',
     views: {
       'menuContent': {
@@ -142,7 +142,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
 
 
   .state('app.pengajar', {
-    // cache: false,
+    cache: false,
     url: '/pengajar',
     views: {
       'menuContent': {
@@ -164,7 +164,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
   })
 
   .state('app.tugas', {
-    // cache: false,
+    cache: false,
     url: '/tugas',
     views: {
       'menuContent': {
@@ -201,7 +201,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
     url: '/edittugas',
     views: {
       'menuContent': {
-        templateUrl: 'templates/tugasedit.html',
+        templateUrl: 'templates/pengajartempl/tugasedit.html',
         controller: 'tugaseditCtrl'
       }
     }
@@ -252,7 +252,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
   })
 
   .state('app.tugas_p', {
-    // cache: false,
+    cache: false,
     url: '/tugas_p',
     views: {
       'menuContent': {
@@ -295,7 +295,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
   })
 
   .state('app.materi', {
-    // cache: false,
+    cache: false,
     url: '/materi',
     views: {
       'menuContent': {
@@ -339,7 +339,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
   })
 
   .state('app.materi_p', {
-    // cache: false,
+    cache: false,
     url: '/materi_p',
     views: {
       'menuContent': {
@@ -359,16 +359,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
       }
     }
   })
-  //
-  // .state('app.materikomen', {
-  //   url: '/materikomen',
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: 'templates/materikomen.html',
-  //       controller: 'materikomenCtrl'
-  //     }
-  //   }
-  // })
 
   .state('app.addmateri', {
     // cache: false,
@@ -382,7 +372,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
   })
 
   .state('app.biodata', {
-    // cache: false,
+    cache: false,
     url: '/biodata',
     views: {
       'menuContent': {
@@ -393,7 +383,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
   })
 
   .state('app.biodata_p', {
-    // cache: false,
+    cache: false,
     url: '/biodata_p',
     views: {
       'menuContent': {

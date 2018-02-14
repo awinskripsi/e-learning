@@ -10,9 +10,8 @@
       <ion-item>Tanggal Posting
               <span class="item-note">{{tgl_tam}}</span>
       </ion-item>
-      <ion-item>file
-              <span class="item-note"><a href="<?php echo base_url(); ?>localhost/elearning-smip/assets/filepengumuman/{{file}}.'.pdf'"
-                download="{{file}}.pdf">{{file}}</a></span>
+      <ion-item>File
+              <a class="button-success" style="float: right;" ng-click="openInExternalBrowser()">Download File</a>
       </ion-item>
     </p>
 

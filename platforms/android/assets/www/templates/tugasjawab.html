@@ -4,7 +4,7 @@
   </ion-nav-buttons>
   <ion-content style="background: linear-gradient(to bottom, #66ffff 0%, #0066ff 100%); ">
     <div class="list" ng-repeat="x in jawaban">
-      <a class="item item-avatar" ng-click="detailjawab(x.tugas_id, x.konten, x.tgl_bu, x.file, x.nama)">
+      <a class="item item-avatar" ng-click="detailjawab(x.nama, x.tugas_id, x.file , x.tgl_bu, x.konten)">
         <h2 ng-bind-html="x.nama"></h2>
         <p>{{x.tgl_bu}}</p>
         <p>{{x.konten}}</p>

@@ -18,7 +18,9 @@
   ],
   "cordovaPlatforms": [],
   "dependencies": {
-    "cordova-android": "^6.3.0",
+    "cordova": "^8.0.0",
+    "cordova-android": "6.3.0",
+    "cordova-plugin-datepicker": "^0.9.3",
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-splashscreen": "~4.0.1",
     "cordova-plugin-statusbar": "2.2.1",
@@ -32,7 +34,8 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {}
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-datepicker": {}
     },
     "platforms": [
       "android"

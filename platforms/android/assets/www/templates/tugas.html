@@ -9,7 +9,8 @@
     </div>
 
     <div class="list" ng-repeat="x in tugas | filter:search | limitTo:listlength">
-      <a class="item item-avatar" ng-click="detail( x.tugas_id, x.judul, x.konten, x.tgl_bu, x.tgl_se, x.file, x.nama_mapel, x.nama, x.nama_kelas)">
+      <a class="item item-avatar" ng-click="detail( x.tugas_id, x.judul, x.konten, x.tgl_bu, x.tgl_se,
+                x.file, x.nama_mapel, x.nama, x.nama_kelas)">
         <h2><b>{{x.judul}}</b></h2>
         {{x.nama_mapel}}
         <p>{{x.tgl_bu}} - {{x.tgl_se}}</p>

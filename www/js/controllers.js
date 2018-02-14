@@ -183,7 +183,15 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.konten = sessionStorage.getItem('konten');
     $scope.tgl_tam = sessionStorage.getItem('tgl_tam');
     $scope.file = sessionStorage.getItem('file');
+    $scope.url_file = "http://localhost/elearning-smip/assets/filepengumuman/"+sessionStorage.getItem('file');
   })
+
+  $scope.openInExternalBrowser = function()
+        {
+         // Open in external browser
+         window.open($scope.url_file,'_system','location=yes');
+        };
+
 })
 
 .controller('siswaCtrl', function($scope, $state, $ionicPopup, $http) {
@@ -231,7 +239,6 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     sessionStorage.setItem('nama', nama);
     sessionStorage.setItem('jenis_kelamin', jenis_kelamin);
     sessionStorage.setItem('tempat_lahir', tempat_lahir);
-    // sessionStorage.setItem('tgl_lahir', tgl_lahir);
     sessionStorage.setItem('tgl_l', tgl_l);
     sessionStorage.setItem('alamat', alamat);
     sessionStorage.setItem('status_nama', status_nama);
@@ -247,7 +254,6 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.nama = sessionStorage.getItem('nama');
     $scope.jenis_kelamin = sessionStorage.getItem('jenis_kelamin');
     $scope.tempat_lahir = sessionStorage.getItem('tempat_lahir');
-    // $scope.tgl_lahir = sessionStorage.getItem('tgl_lahir');
     $scope.tgl_l = sessionStorage.getItem('tgl_l');
     $scope.alamat = sessionStorage.getItem('alamat');
     $scope.status_nama = sessionStorage.getItem('status_nama');
@@ -257,6 +263,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.tahun_masuk = sessionStorage.getItem('tahun_masuk');
     $scope.masa_kerja = sessionStorage.getItem('masa_kerja');
   })
+
 })
 
 //TUGAS SISWA
@@ -456,6 +463,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       .then(function(response){
         $scope.tugas_p = response.data;
         console.log('tugas get',$scope.tugas_p);
+
       })
 
       $scope.detail=function(tugas_id, judul, konten,  tgl_bu, tgl_se, file, nama_mapel,
@@ -499,6 +507,8 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
          // Open in external browser
          window.open($scope.url_file,'_system','location=yes');
         };
+
+
 
   $scope.delete=function(id){
           sessionStorage.setItem('tugas_id', tugas_id);
@@ -702,10 +712,11 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
 
   $scope.form = {};
 
-  $scope.edittugas=function(tugas_id, judul, konten, tgl_bu, tgl_se, nama_mapel, nama, nama_kelas, pengajar_id, kelas_id){
+  $scope.tugasedit=function(tugas_id, judul, konten, th_selesai, tgl_bu, tgl_se, nama_mapel, nama, nama_kelas, pengajar_id, kelas_id){
     sessionStorage.setItem('tugas_id', tugas_id);
     sessionStorage.setItem('judul', judul);
     sessionStorage.setItem('konten', konten);
+    sessionStorage.setItem('th_selesai', th_selesai);
     sessionStorage.setItem('tgl_bu', tgl_bu);
     sessionStorage.setItem('tgl_se', tgl_se);
     // sessionStorage.setItem('file', file);
@@ -721,6 +732,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.form.tugas_id = sessionStorage.getItem('tugas_id');
     $scope.form.judul = sessionStorage.getItem('judul');
     $scope.form.konten = sessionStorage.getItem('konten');
+    $scope.form.th_selesai = sessionStorage.getItem('th_selesai');
     $scope.form.tgl_bu = sessionStorage.getItem('tgl_bu');
     $scope.form.tgl_se = sessionStorage.getItem('tgl_se');
     // $scope.file = sessionStorage.getItem('file');

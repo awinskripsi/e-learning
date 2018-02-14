@@ -33,7 +33,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
 
     $scope.login = function(){
         if ($scope.user.name && $scope.user.password){
-            str="http://localhost/api_elearning/login.php?username="+$scope.user.name+"&password="+$scope.user.password;
+            str="http://192.168.43.222/api_elearning/login.php?username="+$scope.user.name+"&password="+$scope.user.password;
             $http.get(str)
             .success(function(response){ //ji2ka login berhasil
 
@@ -102,7 +102,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
   $scope.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
 
 
-  $http.get('http://localhost/api_elearning/getberanda_p.php?pengajar_id='+$scope.pengajar_id)
+  $http.get('http://192.168.43.222/api_elearning/getberanda_p.php?pengajar_id='+$scope.pengajar_id)
   .then(function(response){
     console.log(response);
     $scope.beranda = response.data;
@@ -131,7 +131,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
 
   $scope.kelas_id = sessionStorage.getItem('loggedin_kelas');
 
-  $http.get('http://localhost/api_elearning/gethari.php')
+  $http.get('http://192.168.43.222/api_elearning/gethari.php')
   .then(function(response){
     console.log('data hari',response);
     $scope.hari = response.data;
@@ -151,7 +151,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     // $scope.pengumuman_id = sessionStorage.getItem('id_pengumuman');
     $scope.hari_id = sessionStorage.getItem('hari_id');
 
-    $http.get('http://localhost/api_elearning/getberanda_s.php?kelas_id='+$scope.kelas_id+'&hari_id='+$scope.hari_id)
+    $http.get('http://192.168.43.222/api_elearning/getberanda_s.php?kelas_id='+$scope.kelas_id+'&hari_id='+$scope.hari_id)
     .then(function(response){
 
       $scope.beranda_s = response.data;
@@ -164,11 +164,8 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
   })
 })
 
-// .controller('kelasCtrl', function($scope, $state, $ionicPopup, $http) {
-
-
 .controller('pengumumanCtrl', function($scope, $state, $ionicPopup, $http) {
-  $http.get('http://localhost/api_elearning/getpengumuman.php')
+  $http.get('http://192.168.43.222/api_elearning/getpengumuman.php')
   .then(function(response){
     $scope.pengumuman = response.data;
   })
@@ -186,11 +183,19 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.konten = sessionStorage.getItem('konten');
     $scope.tgl_tam = sessionStorage.getItem('tgl_tam');
     $scope.file = sessionStorage.getItem('file');
+    $scope.url_file = "http://192.168.43.222/elearning-smip/assets/filepengumuman/"+sessionStorage.getItem('file');
   })
+
+  $scope.openInExternalBrowser = function()
+        {
+         // Open in external browser
+         window.open($scope.url_file,'_system','location=yes');
+        };
+
 })
 
 .controller('siswaCtrl', function($scope, $state, $ionicPopup, $http) {
-  $http.get('http://localhost/api_elearning/getsiswa.php')
+  $http.get('http://192.168.43.222/api_elearning/getsiswa.php')
   .then(function(response){
     $scope.siswa = response.data;
   })
@@ -223,7 +228,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
 })
 
 .controller('pengajarCtrl', function($scope, $state, $ionicPopup, $http) {
-  $http.get('http://localhost/api_elearning/getpengajar.php')
+  $http.get('http://192.168.43.222/api_elearning/getpengajar.php')
   .then(function(response){
     $scope.pengajar = response.data;
   })
@@ -234,7 +239,6 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     sessionStorage.setItem('nama', nama);
     sessionStorage.setItem('jenis_kelamin', jenis_kelamin);
     sessionStorage.setItem('tempat_lahir', tempat_lahir);
-    // sessionStorage.setItem('tgl_lahir', tgl_lahir);
     sessionStorage.setItem('tgl_l', tgl_l);
     sessionStorage.setItem('alamat', alamat);
     sessionStorage.setItem('status_nama', status_nama);
@@ -250,7 +254,6 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.nama = sessionStorage.getItem('nama');
     $scope.jenis_kelamin = sessionStorage.getItem('jenis_kelamin');
     $scope.tempat_lahir = sessionStorage.getItem('tempat_lahir');
-    // $scope.tgl_lahir = sessionStorage.getItem('tgl_lahir');
     $scope.tgl_l = sessionStorage.getItem('tgl_l');
     $scope.alamat = sessionStorage.getItem('alamat');
     $scope.status_nama = sessionStorage.getItem('status_nama');
@@ -260,6 +263,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.tahun_masuk = sessionStorage.getItem('tahun_masuk');
     $scope.masa_kerja = sessionStorage.getItem('masa_kerja');
   })
+
 })
 
 //TUGAS SISWA
@@ -267,7 +271,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
 
     $scope.kelas_id = sessionStorage.getItem('loggedin_kelas');
 
-    $http.get('http://localhost/api_elearning/gettugas.php?kelas_id='+$scope.kelas_id)
+    $http.get('http://192.168.43.222/api_elearning/gettugas.php?kelas_id='+$scope.kelas_id)
     .then(function(response){
       $scope.tugas = response.data;
       console.log('tugas',$scope.tugas);
@@ -292,10 +296,18 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       $scope.tgl_bu = sessionStorage.getItem('tgl_bu');
       $scope.tgl_se = sessionStorage.getItem('tgl_se');
       $scope.file = sessionStorage.getItem('file');
+      $scope.url_file = "http://192.168.43.222/elearning-smip/assets/filetugas/"+sessionStorage.getItem('file');
       $scope.nama_mapel = sessionStorage.getItem('nama_mapel');
       $scope.nama = sessionStorage.getItem('nama');
       $scope.nama_kelas = sessionStorage.getItem('nama_kelas');
     })
+
+    $scope.openInExternalBrowser = function()
+          {
+           // Open in external browser
+           window.open($scope.url_file,'_system','location=yes');
+          };
+
     })
 
     .controller('tugasjawabCtrl', function($scope, $state, $ionicPopup, $http) {
@@ -303,13 +315,14 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.tugas_id = sessionStorage.getItem('tugas_id');
     $scope.siswa_id = sessionStorage.getItem('loggedin_siswa');
 
-    $http.get('http://localhost/api_elearning/getjawaban.php?tugas_id='+$scope.tugas_id+'&siswa_id='+$scope.siswa_id)
+    $http.get('http://192.168.43.222/api_elearning/getjawaban.php?tugas_id='+$scope.tugas_id+'&siswa_id='+$scope.siswa_id)
     .then(function(response){
       $scope.jawaban = response.data;
       console.log('jawaban',$scope.jawaban);
       })
 
-    $scope.detailjawab=function(tugas_id, konten, tgl_bu, nama, file){
+    $scope.detailjawab=function(nama, tugas_id, file,  tgl_bu, konten){
+      sessionStorage.setItem('nama', nama);
       sessionStorage.setItem('tugas_id', tugas_id);
       sessionStorage.setItem('konten', konten);
       sessionStorage.setItem('tgl_bu', tgl_bu);
@@ -318,103 +331,139 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       $state.go('app.jawabtugasdetail',{},{reload:true});
     }
     angular.element(document).ready(function(){
+      $scope.nama = sessionStorage.getItem('nama');
       $scope.tugas_id = sessionStorage.getItem('tugas_id');
-      // $scope.judul = sessionStorage.getItem('judul');
-      $scope.konten = sessionStorage.getItem('konten');
       $scope.tgl_bu = sessionStorage.getItem('tgl_bu');
       $scope.file = sessionStorage.getItem('file');
-      $scope.nama = sessionStorage.getItem('nama');
+      $scope.url_file = "http://192.168.43.222/elearning-smip/assets/filejawaban/"+sessionStorage.getItem('file');
+      $scope.konten = sessionStorage.getItem('konten');
     })
-    })
+
+    $scope.openInExternalBrowser = function()
+          {
+           // Open in external browser
+           window.open($scope.url_file,'_system','location=yes');
+          };
+
+  })
 
     .controller('addJawabCtrl', function($scope, $state, $ionicPopup, $http) {
 
-      $scope.tugas_id = sessionStorage.getItem('tugas_id');
-      $scope.siswa_id = sessionStorage.getItem('loggedin_siswa');
-      $scope.tgl_se = sessionStorage.getItem('tgl_se');
+          $scope.tugas_id = sessionStorage.getItem('tugas_id');
+          $scope.siswa_id = sessionStorage.getItem('loggedin_siswa');
+          $scope.tgl_se = sessionStorage.getItem('tgl_se');
 
-      $http.get('http://localhost/api_elearning/gettugasadd.php?tugas_id='+$scope.tugas_id)
-      .then(function(response){
-        $scope.tugasjawab = response.data;
-        console.log('jawab tugas_id',$scope.tugasjawab);
-      })
-
-      $http.get('http://localhost/api_elearning/getsiswaadd.php?siswa_id='+$scope.siswa_id)
-      .then(function(response){
-        $scope.siswaadd = response.data;
-        console.log('jawab siswa',$scope.siswaadd);
-      })
-
-      $scope.form = {};
-      $scope.form.tgl_buat = new Date();
-      $scope.insertjawab = function () {
-        console.log('jawaban',$scope.form);
-        if (
-          $scope.form.siswa_id &&
-          $scope.form.tugas_id &&
-          $scope.form.tgl_buat &&
-          $scope.form.tgl_se &&
-          $scope.form.konten
-        ) {
-          $http({
-            method : "POST",
-            url : "http://localhost/api_elearning/addjawab.php",
-            proceessData:false,
-            transformRequest:function(data){
-              var formData = new FormData();
-              formData.append("siswa_id", $scope.form.siswa_id);
-              formData.append("tugas_id", $scope.form.tugas_id);
-              formData.append("tgl_buat", $scope.form.tgl_buat);
-              formData.append("tgl_se", $scope.form.tgl_se);
-              formData.append("konten", $scope.form.konten);
-              console.log('send jawab php',$scope.form);
-              return formData;
-            },
-            data : $scope.form,
-            headers: {
-              'Content-Type' : undefined
-            }
-          }). success(function(data){
-            $ionicPopup.alert({
-                title: 'Message',
-                template: '<p>' +(data)+ '</p>'
-            });
-
-            $state.go('app.jawabtugas',[],{location:"replace",reload:true});
-          }).error(function(){
-              $ionicPopup.alert({
-                      title: 'Tambah Data Gagal',
-                      template: 'Gagal Hore'
-                  });
+          $http.get('http://192.168.43.222/api_elearning/gettugasadd.php?tugas_id='+$scope.tugas_id)
+          .then(function(response){
+            $scope.tugasjawab = response.data;
+            console.log('jawab tugas_id',$scope.tugasjawab);
           })
-        } else{
-            $ionicPopup.alert({
-                      title: 'Waduh',
-                      template: 'Harus benar mengisi data'
-                  });
-        }
-      };
 
-      angular.element(document).ready(function(){
-        $scope.form.tugas_id = sessionStorage.getItem('tugas_id');
-        $scope.form.siswa_id = sessionStorage.getItem('loggedin_siswa');
-        $scope.form.tgl_se = sessionStorage.getItem('tgl_se');
-        $scope.konten = sessionStorage.getItem('konten');
-        $scope.tgl_buat = sessionStorage.getItem('tgl_buat');
-        $scope.file = sessionStorage.getItem('file');
-        $scope.nama = sessionStorage.getItem('nama');
-      })
-    })
+          $http.get('http://192.168.43.222/api_elearning/getsiswaadd.php?siswa_id='+$scope.siswa_id)
+          .then(function(response){
+            $scope.siswaadd = response.data;
+            console.log('jawab siswa',$scope.siswaadd);
+          })
+
+          $scope.form = {};
+          $scope.files = [];
+
+          $scope.form.tgl_buat = new Date();
+          $scope.insert = function () {
+            console.log('jawaban',$scope.form);
+            if (
+              $scope.form.siswa_id &&
+              $scope.form.tugas_id &&
+              $scope.form.tgl_buat &&
+              $scope.form.tgl_se &&
+              $scope.form.konten&&
+              $scope.files1
+            ) {
+
+            $scope.form.file=$scope.files1[0];
+
+              $http({
+                method : "POST",
+                url : "http://192.168.43.222/api_elearning/addjawab.php",
+                proceessData:false,
+                transformRequest:function(data){
+                  var formData = new FormData();
+                  formData.append("siswa_id", $scope.form.siswa_id);
+                  formData.append("tugas_id", $scope.form.tugas_id);
+                  formData.append("tgl_buat", $scope.form.tgl_buat);
+                  formData.append("tgl_se", $scope.form.tgl_se);
+                  formData.append("file", $scope.form.file);
+                  formData.append("konten", $scope.form.konten);
+                  console.log('send jawab php',$scope.form);
+                  return formData;
+                },
+                data : $scope.form,
+                headers: {
+                  'Content-Type' : undefined
+                }
+              }). success(function(data){
+                $ionicPopup.alert({
+                    title: 'Message',
+                    template: '<p>' +(data)+ '</p>'
+                });
+
+                $state.go('app.jawabtugas',[],{location:"replace",reload:true});
+              }).error(function(){
+                  $ionicPopup.alert({
+                          title: 'Tambah Data Gagal',
+                          template: 'Gagal Hore'
+                      });
+              })
+            } else{
+                $ionicPopup.alert({
+                          title: 'Waduh',
+                          template: 'Harus benar mengisi data'
+                      });
+            }
+          };
+
+          angular.element(document).ready(function(){
+            $scope.form.tugas_id = sessionStorage.getItem('tugas_id');
+            $scope.form.siswa_id = sessionStorage.getItem('loggedin_siswa');
+            $scope.form.tgl_se = sessionStorage.getItem('tgl_se');
+            $scope.konten = sessionStorage.getItem('konten');
+            $scope.tgl_buat = sessionStorage.getItem('tgl_buat');
+            $scope.file = sessionStorage.getItem('file');
+            $scope.nama = sessionStorage.getItem('nama');
+          })
+
+          $scope.uploadedFile1=function(element)
+          {
+          $scope.currentFile = element.files[0];
+          var reader = new FileReader();
+
+          reader.onload = function(event) {
+          var output = document.getElementById('output');
+          output.src = URL.createObjectURL(element.files[0]);
+
+          $scope.image_source = event.target.result
+          $scope.$apply(function($scope){
+          $scope.files1 = element.files;
+          });
+          }
+          reader.readAsDataURL(element.files[0]);
+          }
+
+        })
+
+
+
 
     //TUGAS PENGAJAR
     .controller('tugasCtrl_p', function($scope, $state, $ionicPopup, $http) {
 
       $scope.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
 
-      $http.get('http://localhost/api_elearning/gettugas_p.php?pengajar_id='+$scope.pengajar_id)
+      $http.get('http://192.168.43.222/api_elearning/gettugas_p.php?pengajar_id='+$scope.pengajar_id)
       .then(function(response){
         $scope.tugas_p = response.data;
         console.log('tugas get',$scope.tugas_p);
+        
       })
 
       $scope.detail=function(tugas_id, judul, konten,  tgl_bu, tgl_se, file, nama_mapel,
@@ -442,6 +491,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
         $scope.tgl_bu = sessionStorage.getItem('tgl_bu');
         $scope.tgl_se = sessionStorage.getItem('tgl_se');
         $scope.file = sessionStorage.getItem('file');
+        $scope.url_file = "http://192.168.43.222/elearning-smip/assets/filetugas/"+sessionStorage.getItem('file');
         $scope.nama_mapel = sessionStorage.getItem('nama_mapel');
         $scope.nama = sessionStorage.getItem('nama');
         $scope.nama_kelas = sessionStorage.getItem('nama_kelas');
@@ -452,6 +502,13 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
         $scope.kelas_id = sessionStorage.getItem('kelas_id');
 
       })
+  $scope.openInExternalBrowser = function()
+        {
+         // Open in external browser
+         window.open($scope.url_file,'_system','location=yes');
+        };
+
+
 
   $scope.delete=function(id){
           sessionStorage.setItem('tugas_id', tugas_id);
@@ -464,7 +521,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
               });
 
               confirmDelete.then(function(res) {
-                  str = "http://localhost/api_elearning/deletetugas.php?tugas_id="+$scope.tugas_id;
+                  str = "http://192.168.43.222/api_elearning/deletetugas.php?tugas_id="+$scope.tugas_id;
                   if(res) {
                       $http.get(str)
                       .success(function(response){
@@ -488,7 +545,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.tugas_id = sessionStorage.getItem('tugas_id');
     // $scope.siswa_id = sessionStorage.getItem('loggedin_siswa');
 
-    $http.get('http://localhost/api_elearning/getjawaban_p.php?tugas_id='+$scope.tugas_id)
+    $http.get('http://192.168.43.222/api_elearning/getjawaban_p.php?tugas_id='+$scope.tugas_id)
     .then(function(response){
       $scope.jawaban = response.data;
       console.log('jawaban_p',$scope.jawaban);
@@ -515,25 +572,26 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
   .controller('addTugasCtrl', function($scope, $state, $ionicPopup, $http) {
     $scope.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
 
-    $http.get('http://localhost/api_elearning/getmapel.php')
+    $http.get('http://192.168.43.222/api_elearning/getmapel.php')
     .then(function(response){
       $scope.mapel = response.data;
       console.log($scope.mapel);
     })
 
-    $http.get('http://localhost/api_elearning/getpengajar_add.php?pengajar_id='+$scope.pengajar_id)
+    $http.get('http://192.168.43.222/api_elearning/getpengajar_add.php?pengajar_id='+$scope.pengajar_id)
     .then(function(response){
       $scope.pengajar_id = response.data;
       console.log($scope.pengajar_id);
     })
 
-    $http.get('http://localhost/api_elearning/getkelas.php')
+    $http.get('http://192.168.43.222/api_elearning/getkelas.php')
     .then(function(response){
       $scope.kelas = response.data;
       console.log($scope.kelas);
     })
 
     $scope.form = {};
+    $scope.files = [];
 
     $scope.form.tgl_buat = new Date();
     // $scope.form.tgl_selesai = new Date();
@@ -544,6 +602,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       if (
         $scope.form.judul &&
         $scope.form.konten &&
+        $scope.files1 &&
         $scope.form.tgl_buat &&
         $scope.form.th_selesai &&
         $scope.form.b_selesai &&
@@ -552,14 +611,18 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
         $scope.form.pengajar_id &&
         $scope.form.kelas
       ) {
+
+        $scope.form.file=$scope.files1[0];
+
         $http({
           method : "POST",
-          url : "http://localhost/api_elearning/addtugas.php",
+          url : "http://192.168.43.222/api_elearning/addtugas.php",
           proceessData:false,
           transformRequest:function(data){
             var formData = new FormData();
             formData.append("judul", $scope.form.judul);
             formData.append("konten", $scope.form.konten);
+            formData.append("file", $scope.form.file);
             formData.append("tgl_buat", $scope.form.tgl_buat);
             formData.append("th_selesai", $scope.form.th_selesai);
             formData.append("b_selesai", $scope.form.b_selesai);
@@ -594,54 +657,27 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
                 });
       }
     };
+
+    $scope.uploadedFile1=function(element)
+      {
+        $scope.currentFile = element.files[0];
+      var reader = new FileReader();
+
+      reader.onload = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(element.files[0]);
+
+        $scope.image_source = event.target.result
+        $scope.$apply(function($scope){
+          $scope.files1 = element.files;
+        });
+      }
+        reader.readAsDataURL(element.files[0]);
+      }
+
     angular.element(document).ready(function(){
       $scope.form.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
     })
-
-  /*  $scope.insert=function(){
-        var judul = $scope.form.judul;
-        var konten = $scope.form.konten;
-        var tgl_buat = $scope.form.tgl_buat;
-        var mapel_id = $scope.form.mapel;
-        var tgl_selesai = $scope.form.tgl_selesai;
-        var pengajar_id = $scope.form.pengajar;
-        var kelas_id = $scope.form.kelas;
-        console.log($scope.form);
-        if(judul && konten && tgl_buat && tgl_selesai && mapel_id && pengajar_id && kelas_id){
-            str = "http://localhost/api_elearning/addtugas.php?judul="+judul+"&konten="+konten+
-            "&tgl_buat="+tgl_buat+"&tgl_selesai="+tgl_selesai+"&mapel_id="+mapel_id+
-            "&pengajar_id="+pengajar_id+"&kelas_id="+kelas_id;
-       $http.get(str)
-       .success(function(response){
-           if(response==true){
-               $ionicPopup.alert({
-                   title: 'Tambah Data Berhasil',
-                   template: 'Berhasil Hore'
-               });
-
-               $state.go('app.tugas_p',[],{location:"replace",reload:true});
-
-           }else{
-               $ionicPopup.alert({
-                   title: 'Tambah Data Gagal',
-                   template: 'Gagal'
-               });
-           }
-       }).error(function(){
-           $ionicPopup.alert({
-                   title: 'Tambah Data Gagal',
-                   template: 'Gagal Hore'
-               });
-       })
-     } else{
-         $ionicPopup.alert({
-                   title: 'Waduh',
-                   template: 'Harus benar mengisi data'
-               });
-     }
-
-   };*/
-
 
   })
 
@@ -650,25 +686,25 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.kelas_id = sessionStorage.getItem('loggedin_kelas');
     $scope.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
 
-    $http.get('http://localhost/api_elearning/getmapel.php')
+    $http.get('http://192.168.43.222/api_elearning/getmapel.php')
     .then(function(response){
       $scope.mapel = response.data;
       console.log($scope.mapel);
     })
 
-    $http.get('http://localhost/api_elearning/getpengajar.php?pengajar_id='+$scope.pengajar_id)
+    $http.get('http://192.168.43.222/api_elearning/getpengajar.php?pengajar_id='+$scope.pengajar_id)
     .then(function(response){
       $scope.pengajar = response.data;
       console.log($scope.pengajar);
     })
 
-    $http.get('http://localhost/api_elearning/getkelas.php')
+    $http.get('http://192.168.43.222/api_elearning/getkelas.php')
     .then(function(response){
       $scope.kelas = response.data;
       console.log($scope.kelas);
     })
 
-    $http.get('http://localhost/api_elearning/gettugasedit.php')
+    $http.get('http://192.168.43.222/api_elearning/gettugasedit.php')
     .then(function(response){
       $scope.tugasedit = response.data;
       console.log('tugas edit',  $scope.tugasedit);
@@ -722,7 +758,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
           var kelas_id = $scope.form.kelas_id;
 
           if(tugas_id && judul && konten && tgl_bu && tgl_se && mapel_id && pengajar_id && kelas_id){
-              str = "http://localhost/api_elearning/updatetugas.php?tugas_id="+tugas_id+"&judul="+judul+
+              str = "http://192.168.43.222/api_elearning/updatetugas.php?tugas_id="+tugas_id+"&judul="+judul+
               "&konten="+konten+"&tgl_bu="+tgl_bu+"&tgl_se="+tgl_se+"&mapel_id="+mapel_id+"&pengajar_id="+
               pengajar_id+"&kelas_id="+kelas_id;
          $http.get(str)
@@ -764,7 +800,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
 
     $scope.kelas_id = sessionStorage.getItem('loggedin_kelas');
 
-    $http.get('http://localhost/api_elearning/getmateri.php?kelas_id='+$scope.kelas_id)
+    $http.get('http://192.168.43.222/api_elearning/getmateri.php?kelas_id='+$scope.kelas_id)
     .then(function(response){
       $scope.materi = response.data;
       console.log('materi show',$scope.materi);
@@ -787,10 +823,18 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       $scope.konten = sessionStorage.getItem('konten');
       $scope.tgl_post = sessionStorage.getItem('tgl_post');
       $scope.file = sessionStorage.getItem('file');
+      $scope.url_file = "http://192.168.43.222/elearning-smip/assets/filemateri/"+sessionStorage.getItem('file');
       $scope.nama_mapel = sessionStorage.getItem('nama_mapel');
       $scope.nama = sessionStorage.getItem('nama');
       $scope.nama_kelas = sessionStorage.getItem('nama_kelas');
     })
+
+    $scope.openInExternalBrowser = function()
+          {
+           // Open in external browser
+           window.open($scope.url_file,'_system','location=yes');
+          };
+
     })
 
   .controller('materikomenCtrl', function($scope, $state, $ionicPopup, $http) {
@@ -798,7 +842,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.materi_id = sessionStorage.getItem('materi_id');
     $scope.login_id = sessionStorage.getItem('loggedin_id');
 
-    $http.get('http://localhost/api_elearning/getkomen.php?materi_id='+$scope.materi_id)
+    $http.get('http://192.168.43.222/api_elearning/getkomen.php?materi_id='+$scope.materi_id)
     .then(function(response){
       $scope.komen = response.data;
       console.log('komentar',$scope.komen);
@@ -824,13 +868,13 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.materi_id = sessionStorage.getItem('materi_id');
     $scope.login_id = sessionStorage.getItem('loggedin_id');
 
-    $http.get('http://localhost/api_elearning/getmateriadd.php?materi_id='+$scope.materi_id)
+    $http.get('http://192.168.43.222/api_elearning/getmateriadd.php?materi_id='+$scope.materi_id)
     .then(function(response){
       $scope.materiadd = response.data;
       console.log('materiadd',$scope.materiadd);
     })
 
-    $http.get('http://localhost/api_elearning/getloginadd.php?login_id='+$scope.login_id)
+    $http.get('http://192.168.43.222/api_elearning/getloginadd.php?login_id='+$scope.login_id)
     .then(function(response){
       $scope.loginadd = response.data;
       console.log('login id',$scope.loginadd);
@@ -848,7 +892,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       ) {
         $http({
           method : "POST",
-          url : "http://localhost/api_elearning/addkomen.php",
+          url : "http://192.168.43.222/api_elearning/addkomen.php",
           proceessData:false,
           transformRequest:function(data){
             var formData = new FormData();
@@ -897,13 +941,13 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
 
     $scope.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
 
-    $http.get('http://localhost/api_elearning/getmateri_p.php?pengajar_id='+$scope.pengajar_id)
+    $http.get('http://192.168.43.222/api_elearning/getmateri_p.php?pengajar_id='+$scope.pengajar_id)
     .then(function(response){
       $scope.materi_p = response.data;
       console.log('materi show p',$scope.materi_p);
     })
 
-    $scope.detail=function(materi_id, judul, konten, tgl_post, file, nama_mapel, nama, nama_kelas){
+    $scope.detail=function(materi_id, judul, konten, tgl_post , file , nama_mapel, nama, nama_kelas){
       sessionStorage.setItem('materi_id', materi_id);
       sessionStorage.setItem('judul', judul);
       sessionStorage.setItem('konten', konten);
@@ -920,10 +964,18 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       $scope.konten = sessionStorage.getItem('konten');
       $scope.tgl_post = sessionStorage.getItem('tgl_post');
       $scope.file = sessionStorage.getItem('file');
+      $scope.url_file = "http://192.168.43.222/elearning-smip/assets/filemateri/"+sessionStorage.getItem('file');
+      $scope.file = sessionStorage.getItem('file');
       $scope.nama_mapel = sessionStorage.getItem('nama_mapel');
       $scope.nama = sessionStorage.getItem('nama');
       $scope.nama_kelas = sessionStorage.getItem('nama_kelas');
     })
+
+    $scope.openInExternalBrowser = function()
+          {
+           // Open in external browser
+           window.open($scope.url_file,'_system','location=yes');
+          };
 
     $scope.delete=function(id){
             sessionStorage.setItem('materi_id', materi_id);
@@ -936,7 +988,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
                 });
 
                 confirmDelete.then(function(res) {
-                    str = "http://localhost/api_elearning/deletemateri.php?materi_id="+$scope.materi_id;
+                    str = "http://192.168.43.222/api_elearning/deletemateri.php?materi_id="+$scope.materi_id;
                     if(res) {
                         $http.get(str)
                         .success(function(response){
@@ -958,19 +1010,19 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     .controller('addMateriCtrl', function($scope, $state, $ionicPopup, $http) {
       $scope.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
 
-      $http.get('http://localhost/api_elearning/getmapel.php')
+      $http.get('http://192.168.43.222/api_elearning/getmapel.php')
       .then(function(response){
         $scope.mapel = response.data;
         console.log($scope.mapel);
       })
 
-      $http.get('http://localhost/api_elearning/getpengajar_add.php?pengajar_id='+$scope.pengajar_id)
+      $http.get('http://192.168.43.222/api_elearning/getpengajar_add.php?pengajar_id='+$scope.pengajar_id)
       .then(function(response){
         $scope.pengajar_id = response.data;
         console.log($scope.pengajar_id);
       })
 
-      $http.get('http://localhost/api_elearning/getkelas.php')
+      $http.get('http://192.168.43.222/api_elearning/getkelas.php')
       .then(function(response){
         $scope.kelas = response.data;
         console.log($scope.kelas);
@@ -983,19 +1035,24 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
         if (
           $scope.form.judul &&
           $scope.form.konten &&
+          $scope.files1 &&
           $scope.form.tgl_posting &&
           $scope.form.mapel &&
           $scope.form.pengajar_id &&
           $scope.form.kelas
         ) {
+
+          $scope.form.file=$scope.files1[0];
+
           $http({
             method : "POST",
-            url : "http://localhost/api_elearning/addmateri.php",
+            url : "http://192.168.43.222/api_elearning/addmateri.php",
             proceessData:false,
             transformRequest:function(data){
               var formData = new FormData();
               formData.append("judul", $scope.form.judul);
               formData.append("konten", $scope.form.konten);
+              formData.append("file", $scope.form.file);
               formData.append("tgl_posting", $scope.form.tgl_posting);
               formData.append("mapel_id", $scope.form.mapel);
               formData.append("pengajar_id", $scope.form.pengajar_id);
@@ -1027,13 +1084,32 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
                   });
         }
       };
+
+      $scope.uploadedFile1=function(element)
+      {
+
+      $scope.currentFile = element.files[0];
+      var reader = new FileReader();
+
+      reader.onload = function(event) {
+      var output = document.getElementById('output');
+      output.src = URL.createObjectURL(element.files[0]);
+
+      $scope.image_source = event.target.result
+      $scope.$apply(function($scope){
+        $scope.files1 = element.files;
+      });
+      }
+      reader.readAsDataURL(element.files[0]);
+      }
+
       angular.element(document).ready(function(){
         $scope.form.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
       })
     })
 
 .controller('mapelCtrl', function($scope, $state, $ionicPopup, $http) {
-  $http.get('http://localhost/api_elearning/getmapel.php')
+  $http.get('http://192.168.43.222/api_elearning/getmapel.php')
   .then(function(response){
     $scope.mapel = response.data;
   })
@@ -1044,7 +1120,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
   // sessionStorage.setItem('loggedin_siswa', $scope.user_details.siswa_id);
   $scope.siswa_id = sessionStorage.getItem('loggedin_siswa');
 
-  $http.get('http://localhost/api_elearning/getbio.php?siswa_id='+$scope.siswa_id)
+  $http.get('http://192.168.43.222/api_elearning/getbio.php?siswa_id='+$scope.siswa_id)
   .then(function(response){
     $scope.bio = response.data;
     console.log('Bio siswa',$scope.bio);
@@ -1056,7 +1132,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
   // sessionStorage.setItem('loggedin_siswa', $scope.user_details.siswa_id);
   $scope.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
 
-  $http.get('http://localhost/api_elearning/getbio_p.php?pengajar_id='+$scope.pengajar_id)
+  $http.get('http://192.168.43.222/api_elearning/getbio_p.php?pengajar_id='+$scope.pengajar_id)
   .then(function(response){
     $scope.bio_p = response.data;
     console.log('Bio pengajar',$scope.bio_p);

@@ -25,7 +25,17 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "xml": "<feature name=\"DatePickerPlugin\"><param name=\"android-package\" value=\"com.plugin.datepicker.DatePickerPlugin\" /></feature>",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "config.xml": {
+        "parents": {
+          "/*": [
+            {
+              "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" onload=\"true\" value=\"io.ionic.keyboard.IonicKeyboard\" /></feature>",
               "count": 1
             }
           ]
@@ -35,22 +45,28 @@
   },
   "installed_plugins": {
     "cordova-plugin-console": {
-      "PACKAGE_NAME": "com.ionicframework.elearning972127"
+      "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.ionicframework.elearning972127"
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.ionicframework.elearning972127"
+      "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.ionicframework.elearning972127"
+      "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.ionicframework.elearning972127"
+      "PACKAGE_NAME": "io.ionic.starter"
     },
-    "ionic-plugin-keyboard": {
-      "PACKAGE_NAME": "com.ionicframework.elearning972127"
+    "cordova-plugin-datepicker": {
+      "PACKAGE_NAME": "io.ionic.starter"
     }
   },
   "dependent_plugins": {},
@@ -61,6 +77,14 @@
       "pluginId": "cordova-plugin-device",
       "clobbers": [
         "device"
+      ]
+    },
+    {
+      "id": "cordova-plugin-ionic-keyboard.keyboard",
+      "file": "plugins/cordova-plugin-ionic-keyboard/www/android/keyboard.js",
+      "pluginId": "cordova-plugin-ionic-keyboard",
+      "clobbers": [
+        "window.Keyboard"
       ]
     },
     {
@@ -80,21 +104,22 @@
       ]
     },
     {
-      "id": "ionic-plugin-keyboard.keyboard",
-      "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
-      "pluginId": "ionic-plugin-keyboard",
+      "id": "cordova-plugin-datepicker.DatePicker",
+      "file": "plugins/cordova-plugin-datepicker/www/android/DatePicker.js",
+      "pluginId": "cordova-plugin-datepicker",
       "clobbers": [
-        "cordova.plugins.Keyboard"
-      ],
-      "runs": true
+        "datePicker"
+      ]
     }
   ],
   "plugin_metadata": {
     "cordova-plugin-console": "1.1.0",
     "cordova-plugin-device": "1.1.4",
+    "cordova-plugin-ionic-keyboard": "2.0.5",
+    "cordova-plugin-ionic-webview": "1.1.16",
     "cordova-plugin-splashscreen": "4.0.3",
     "cordova-plugin-statusbar": "2.2.1",
     "cordova-plugin-whitelist": "1.3.1",
-    "ionic-plugin-keyboard": "2.2.1"
+    "cordova-plugin-datepicker": "0.9.3"
   }
 }
