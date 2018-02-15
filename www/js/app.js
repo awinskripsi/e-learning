@@ -350,7 +350,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
   })
 
   .state('app.detailmateri_p', {
-    // cache: false,
+    cache: false,
     url: '/detailmateri_p',
     views: {
       'menuContent': {
@@ -367,6 +367,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
       'menuContent': {
         templateUrl: 'templates/pengajartempl/materiadd.html',
         controller: 'addMateriCtrl'
+      }
+    }
+  })
+
+  .state('app.editmateri', {
+    // cache: false,
+    url: '/editmateri',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/pengajartempl/materiedit.html',
+        controller: 'materieditCtrl'
       }
     }
   })

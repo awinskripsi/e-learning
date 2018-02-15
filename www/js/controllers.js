@@ -710,10 +710,6 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       console.log('tugas edit',  $scope.tugasedit);
     })
 
-
-
-  // $scope.form = {};
-
   $scope.tugasedit=function(tugas_id, judul, konten, th_selesai, tgl_bu, tgl_se, nama_mapel, nama, nama_kelas, pengajar_id, kelas_id){
     sessionStorage.setItem('tugas_id', tugas_id);
     sessionStorage.setItem('judul', judul);
@@ -1158,6 +1154,149 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       angular.element(document).ready(function(){
         $scope.form.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
       })
+    })
+
+  .controller('materieditCtrl', function($scope, $state, $ionicPopup, $http, $filter) {
+
+    $scope.kelas_id = sessionStorage.getItem('loggedin_kelas');
+    $scope.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
+
+    $http.get('http://localhost/api_elearning/getmapel.php')
+    .then(function(response){
+      $scope.mapel = response.data;
+      console.log($scope.mapel);
+    })
+
+    $http.get('http://localhost/api_elearning/getpengajar.php?pengajar_id='+$scope.pengajar_id)
+    .then(function(response){
+      $scope.pengajar = response.data;
+      console.log($scope.pengajar);
+    })
+
+    $http.get('http://localhost/api_elearning/getkelas.php')
+    .then(function(response){
+      $scope.kelas = response.data;
+      console.log($scope.kelas);
+    })
+
+    $http.get('http://localhost/api_elearning/getmateriedit.php')
+    .then(function(response){
+      $scope.materiedit = response.data;
+      console.log('materi edit',  $scope.materiedit);
+    })
+
+  $scope.materiedit=function(materi_id, judul, konten,  file, nama_mapel, nama, nama_kelas, pengajar_id, kelas_id){
+    sessionStorage.setItem('materi_id', materi_id);
+    sessionStorage.setItem('judul', judul);
+    sessionStorage.setItem('konten', konten);
+    // sessionStorage.setItem('tgl_posting', tgl_posting);
+    sessionStorage.setItem('file', file);
+    sessionStorage.setItem('nama_mapel', nama_mapel);
+    sessionStorage.setItem('nama', nama);
+    sessionStorage.setItem('nama_kelas', nama_kelas);
+    sessionStorage.setItem('mapel_id', mapel_id);
+    sessionStorage.setItem('pengajar_id', pengajar_id);
+    sessionStorage.setItem('kelas_id', kelas_id);
+    $state.go('app.editmateri',{},{reload:true});
+  }
+  angular.element(document).ready(function(){
+    $scope.form.materi_id = sessionStorage.getItem('materi_id');
+    $scope.form.judul = sessionStorage.getItem('judul');
+    $scope.form.konten = sessionStorage.getItem('konten');
+    $scope.form.file = sessionStorage.getItem('file');
+    $scope.form.nama_mapel = sessionStorage.getItem('nama_mapel');
+    $scope.form.nama = sessionStorage.getItem('nama');
+    $scope.form.nama_kelas = sessionStorage.getItem('nama_kelas');
+    $scope.form.mapel_id = sessionStorage.getItem('mapel_id');
+    $scope.form.pengajar_id = sessionStorage.getItem('pengajar_id');
+    $scope.form.kelas_id = sessionStorage.getItem('kelas_id');
+
+    console.log('form',  $scope.form);
+  })
+
+  $scope.form = {};
+  $scope.files = [];
+
+  // $scope.form.tgl_posting = new Date();
+
+  $scope.update = function () {
+    if (
+      $scope.form.materi_id &&
+      $scope.form.judul &&
+      $scope.form.konten &&
+      $scope.files1 &&
+      // $scope.form.tgl_posting &&
+      $scope.form.mapel_id &&
+      $scope.form.pengajar_id &&
+      $scope.form.kelas_id
+    ) {
+
+      $scope.form.file=$scope.files1[0];
+
+      $http({
+        method : "POST",
+        url : "http://localhost/api_elearning/updatemateri.php",
+        proceessData:false,
+        transformRequest:function(data){
+          var formData = new FormData();
+          formData.append("materi_id", $scope.form.materi_id);
+          formData.append("judul", $scope.form.judul);
+          formData.append("konten", $scope.form.konten);
+          formData.append("file", $scope.form.file);
+          // formData.append("tgl_posting", $scope.form.tgl_posting);
+          formData.append("mapel_id", $scope.form.mapel_id);
+          formData.append("pengajar_id", $scope.form.pengajar_id);
+          formData.append("kelas_id", $scope.form.kelas_id);
+
+          console.log('send edit materi php',$scope.form);
+          return formData;
+        },
+        data : $scope.form,
+        headers: {
+          'Content-Type' : undefined
+        }
+      }). success(function(data){
+        $ionicPopup.alert({
+            title: 'Message',
+            template: '<p>' +(data)+ '</p>'
+        });
+
+        $state.go('app.materi_p',[],{location:"replace",reload:true});
+      }).error(function(){
+          $ionicPopup.alert({
+                  title: 'Tambah Data Gagal',
+                  template: 'Gagal Hore'
+              });
+      })
+    } else{
+        $ionicPopup.alert({
+                  title: 'Waduh',
+                  template: 'Harus benar mengisi data'
+              });
+    }
+  };
+
+    $scope.uploadedFile1=function(element)
+      {
+        $scope.currentFile = element.files[0];
+      var reader = new FileReader();
+
+      reader.onload = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(element.files[0]);
+
+        $scope.image_source = event.target.result
+        $scope.$apply(function($scope){
+          $scope.files1 = element.files;
+        });
+      }
+        reader.readAsDataURL(element.files[0]);
+      }
+
+    angular.element(document).ready(function(){
+      $scope.form.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
+    })
+
     })
 
 .controller('mapelCtrl', function($scope, $state, $ionicPopup, $http) {
