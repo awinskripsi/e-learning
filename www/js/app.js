@@ -197,7 +197,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
   })
 
   .state('app.edittugas', {
-    // cache: false,
+    cache: false,
     url: '/edittugas',
     views: {
       'menuContent': {

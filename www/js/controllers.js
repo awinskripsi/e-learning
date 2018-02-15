@@ -681,7 +681,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
 
   })
 
-  .controller('tugaseditCtrl', function($scope, $state, $ionicPopup, $http) {
+  .controller('tugaseditCtrl', function($scope, $state, $ionicPopup, $http, $filter) {
 
     $scope.kelas_id = sessionStorage.getItem('loggedin_kelas');
     $scope.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
@@ -710,7 +710,9 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       console.log('tugas edit',  $scope.tugasedit);
     })
 
-  $scope.form = {};
+
+
+  // $scope.form = {};
 
   $scope.tugasedit=function(tugas_id, judul, konten, th_selesai, tgl_bu, tgl_se, nama_mapel, nama, nama_kelas, pengajar_id, kelas_id){
     sessionStorage.setItem('tugas_id', tugas_id);
@@ -734,7 +736,15 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.form.konten = sessionStorage.getItem('konten');
     $scope.form.th_selesai = sessionStorage.getItem('th_selesai');
     $scope.form.tgl_bu = sessionStorage.getItem('tgl_bu');
-    $scope.form.tgl_se = sessionStorage.getItem('tgl_se');
+
+    let selesai =  $filter('date')(sessionStorage.getItem('tgl_se'), 'yyyy MM dd');
+    console.log(selesai);
+    selesai = selesai.split(' ');
+
+    console.log(selesai);
+    $scope.form.th_selesai = parseInt(selesai[2]);
+    $scope.form.b_selesai = selesai[1];
+    $scope.form.t_selesai = selesai[0];
     // $scope.file = sessionStorage.getItem('file');
     $scope.form.nama_mapel = sessionStorage.getItem('nama_mapel');
     $scope.form.nama = sessionStorage.getItem('nama');
@@ -747,53 +757,93 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
   })
 
   $scope.form = {};
+  $scope.files = [];
 
-      $scope.update=function(){
+  $scope.form.tgl_buat = new Date();
 
-          var tugas_id = $scope.form.tugas_id;
-          var judul = $scope.form.judul;
-          var konten = $scope.form.konten;
-          var tgl_bu = $scope.form.tgl_bu;
-          var tgl_se = $scope.form.tgl_se;
-          var mapel_id = $scope.form.mapel_id;
-          var pengajar_id = $scope.form.pengajar_id;
-          var kelas_id = $scope.form.kelas_id;
+  $scope.update = function () {
+    if (
+      $scope.form.tugas_id &&
+      $scope.form.judul &&
+      $scope.form.konten &&
+      $scope.files1 &&
+      $scope.form.tgl_buat &&
+      $scope.form.th_selesai &&
+      $scope.form.b_selesai &&
+      $scope.form.t_selesai &&
+      $scope.form.mapel_id &&
+      $scope.form.pengajar_id &&
+      $scope.form.kelas_id
+    ) {
 
-          if(tugas_id && judul && konten && tgl_bu && tgl_se && mapel_id && pengajar_id && kelas_id){
-              str = "http://localhost/api_elearning/updatetugas.php?tugas_id="+tugas_id+"&judul="+judul+
-              "&konten="+konten+"&tgl_bu="+tgl_bu+"&tgl_se="+tgl_se+"&mapel_id="+mapel_id+"&pengajar_id="+
-              pengajar_id+"&kelas_id="+kelas_id;
-         $http.get(str)
-         .success(function(response){
-             if(response==true){
-                 $ionicPopup.alert({
-                     title: 'Data Berhasil Dirubah',
-                     template: 'Berhasil Hore'
-                 });
+      $scope.form.file=$scope.files1[0];
 
-                 $state.go('app.tugasdetail_p',[],{location:"replace",reload:true});
+      $http({
+        method : "POST",
+        url : "http://localhost/api_elearning/updatetugas.php",
+        proceessData:false,
+        transformRequest:function(data){
+          var formData = new FormData();
+          formData.append("tugas_id", $scope.form.tugas_id);
+          formData.append("judul", $scope.form.judul);
+          formData.append("konten", $scope.form.konten);
+          formData.append("file", $scope.form.file);
+          formData.append("tgl_buat", $scope.form.tgl_buat);
+          formData.append("th_selesai", $scope.form.th_selesai);
+          formData.append("b_selesai", $scope.form.b_selesai);
+          formData.append("t_selesai", $scope.form.t_selesai);
+          formData.append("mapel_id", $scope.form.mapel_id);
+          formData.append("pengajar_id", $scope.form.pengajar_id);
+          formData.append("kelas_id", $scope.form.kelas_id);
 
-             }
-             else{
-                 $ionicPopup.alert({
-                     title: 'Rubah Data Gagal',
-                     template: $scope.tugas_id
-                 });
-             }
-         }).error(function(){
-             $ionicPopup.alert({
-                     title: 'Rubah Data Gagal',
-                     template: 'Gagal Hore'
-                 });
-         })
-       } else{
-           $ionicPopup.alert({
-                     title: 'Waduh',
-                     template: 'Harus benar mengisi data'
-                 });
-       }
+          console.log('send edit php',$scope.form);
+          return formData;
+        },
+        data : $scope.form,
+        headers: {
+          'Content-Type' : undefined
+        }
+      }). success(function(data){
+        $ionicPopup.alert({
+            title: 'Message',
+            template: '<p>' +(data)+ '</p>'
+        });
 
-      };
+        $state.go('app.tugas_p',[],{location:"replace",reload:true});
+      }).error(function(){
+          $ionicPopup.alert({
+                  title: 'Tambah Data Gagal',
+                  template: 'Gagal Hore'
+              });
+      })
+    } else{
+        $ionicPopup.alert({
+                  title: 'Waduh',
+                  template: 'Harus benar mengisi data'
+              });
+    }
+  };
+
+  $scope.uploadedFile1=function(element)
+    {
+      $scope.currentFile = element.files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+      var output = document.getElementById('output');
+      output.src = URL.createObjectURL(element.files[0]);
+
+      $scope.image_source = event.target.result
+      $scope.$apply(function($scope){
+        $scope.files1 = element.files;
+      });
+    }
+      reader.readAsDataURL(element.files[0]);
+    }
+
+  angular.element(document).ready(function(){
+    $scope.form.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
+  })
 
 })
 

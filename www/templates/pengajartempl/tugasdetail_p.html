@@ -13,7 +13,7 @@
             <a class="button-success" style="float: right;" ng-click="openInExternalBrowser()">Download File</a>
     </ion-item>
     <ion-item>Tanggal
-            <span class="item-note"></br> {{tgl_bu}} - {{tgl_se}}</span>
+            <span class="item-note"></br> {{tgl_bu | date: 'dd MMMM yyyy'}} - {{tgl_se | date: 'dd MMMM yyyy'}}</span>
     </ion-item>
     <ion-item>Matapelajaran
             <span class="item-note">{{nama_mapel}}</span>
