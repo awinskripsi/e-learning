@@ -197,11 +197,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
   })
 
   .state('app.edittugas', {
-    cache: false,
+   cache: false,
     url: '/edittugas',
     views: {
       'menuContent': {
-        templateUrl: 'templates/tugasedit.html',
+        templateUrl: 'templates/pengajartempl/tugasedit.html',
         controller: 'tugaseditCtrl'
       }
     }
@@ -359,16 +359,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
       }
     }
   })
-  //
-  // .state('app.materikomen', {
-  //   url: '/materikomen',
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: 'templates/materikomen.html',
-  //       controller: 'materikomenCtrl'
-  //     }
-  //   }
-  // })
 
   .state('app.addmateri', {
     cache: false,
@@ -377,6 +367,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
       'menuContent': {
         templateUrl: 'templates/pengajartempl/materiadd.html',
         controller: 'addMateriCtrl'
+      }
+    }
+  })
+
+  .state('app.editmateri', {
+    cache: false,
+    url: '/editmateri',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/pengajartempl/materiedit.html',
+        controller: 'materieditCtrl'
       }
     }
   })
