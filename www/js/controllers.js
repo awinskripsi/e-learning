@@ -1220,12 +1220,12 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
   // $scope.form.tgl_posting = new Date();
 
   $scope.update = function () {
+
     if (
       $scope.form.materi_id &&
       $scope.form.judul &&
       $scope.form.konten &&
       $scope.files1 &&
-      // $scope.form.tgl_posting &&
       $scope.form.mapel_id &&
       $scope.form.pengajar_id &&
       $scope.form.kelas_id
@@ -1233,47 +1233,50 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
 
       $scope.form.file=$scope.files1[0];
 
-      $http({
-        method : "POST",
-        url : "http://localhost/api_elearning/updatemateri.php",
-        proceessData:false,
-        transformRequest:function(data){
-          var formData = new FormData();
-          formData.append("materi_id", $scope.form.materi_id);
-          formData.append("judul", $scope.form.judul);
-          formData.append("konten", $scope.form.konten);
-          formData.append("file", $scope.form.file);
-          // formData.append("tgl_posting", $scope.form.tgl_posting);
-          formData.append("mapel_id", $scope.form.mapel_id);
-          formData.append("pengajar_id", $scope.form.pengajar_id);
-          formData.append("kelas_id", $scope.form.kelas_id);
-
-          console.log('send edit materi php',$scope.form);
-          return formData;
-        },
-        data : $scope.form,
-        headers: {
-          'Content-Type' : undefined
-        }
-      }). success(function(data){
-        $ionicPopup.alert({
-            title: 'Message',
-            template: '<p>' +(data)+ '</p>'
-        });
-
-        $state.go('app.materi_p',[],{location:"replace",reload:true});
-      }).error(function(){
-          $ionicPopup.alert({
-                  title: 'Tambah Data Gagal',
-                  template: 'Gagal Hore'
-              });
-      })
-    } else{
-        $ionicPopup.alert({
-                  title: 'Waduh',
-                  template: 'Harus benar mengisi data'
-              });
     }
+
+
+          $http({
+            method : "POST",
+            url : "http://localhost/api_elearning/updatemateri.php",
+            proceessData:false,
+            transformRequest:function(data){
+              var formData = new FormData();
+              formData.append("materi_id", $scope.form.materi_id);
+              formData.append("judul", $scope.form.judul);
+              formData.append("konten", $scope.form.konten);
+              formData.append("file", $scope.form.file);
+              // formData.append("tgl_posting", $scope.form.tgl_posting);
+              formData.append("mapel_id", $scope.form.mapel_id);
+              formData.append("pengajar_id", $scope.form.pengajar_id);
+              formData.append("kelas_id", $scope.form.kelas_id);
+
+              console.log('send edit materi php',$scope.form);
+              return formData;
+            },
+            data : $scope.form,
+            headers: {
+              'Content-Type' : undefined
+            }
+          }). success(function(data){
+            $ionicPopup.alert({
+                title: 'Message',
+                template: '<p>' +(data)+ '</p>'
+            });
+
+            $state.go('app.materi_p',[],{location:"replace",reload:true});
+          }).error(function(){
+              $ionicPopup.alert({
+                      title: 'Tambah Data Gagal',
+                      template: 'Gagal Hore'
+                  });
+          })
+    //else{
+    //     $ionicPopup.alert({
+    //               title: 'Waduh',
+    //               template: 'Harus benar mengisi data'
+    //           });
+    // }
   };
 
     $scope.uploadedFile1=function(element)
