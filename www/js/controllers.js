@@ -773,6 +773,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     ) {
 
       $scope.form.file=$scope.files1[0];
+    }
 
       $http({
         method : "POST",
@@ -812,12 +813,12 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
                   template: 'Gagal Hore'
               });
       })
-    } else{
-        $ionicPopup.alert({
-                  title: 'Waduh',
-                  template: 'Harus benar mengisi data'
-              });
-    }
+    // } else{
+    //     $ionicPopup.alert({
+    //               title: 'Waduh',
+    //               template: 'Harus benar mengisi data'
+    //           });
+    // }
   };
 
   $scope.uploadedFile1=function(element)
