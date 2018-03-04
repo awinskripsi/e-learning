@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, $ionicHistory, $state) {
   //pembagian beranda berdasarkan level
   $scope.beranda = false;
   if( sessionStorage.getItem('loggedin_level') === 'Siswa'){$scope.beranda = true;}
@@ -24,6 +24,70 @@ angular.module('starter.controllers', [])
   if( sessionStorage.getItem('loggedin_level') === 'Siswa'){$scope.bio = true;}
   $scope.bio_p = false;
   if( sessionStorage.getItem('loggedin_level') === 'Pengajar'){$scope.bio_p = true;}
+
+  // loads value from the loggin session
+  // sessionStorage.setItem('loggedin_id', $scope.user_details.login_id);
+  // sessionStorage.setItem('loggedin_siswa', $scope.user_details.siswa_id);
+  // sessionStorage.setItem('loggedin_pengajar', $scope.user_details.pengajar_id);
+  // sessionStorage.setItem('loggedin_level', $scope.user_details.level);
+  // sessionStorage.setItem('loggedin_nis', $scope.user_details.nis);
+  // sessionStorage.setItem('loggedin_nama', $scope.user_details.nama);
+  // sessionStorage.setItem('loggedin_nama_siswa', $scope.user_details.nama_siswa);
+  // sessionStorage.setItem('loggedin_jenis_kelamin', $scope.user_details.jenis_kelamin);
+  // sessionStorage.setItem('loggedin_tempat_lahir', $scope.user_details.tempat_lahir);
+  // sessionStorage.setItem('loggedin_tgl_lahir', $scope.user_details.tgl_lahir);
+  // sessionStorage.setItem('loggedin_agama', $scope.user_details.agama);
+  // sessionStorage.setItem('loggedin_alamat', $scope.user_details.alamat);
+  // sessionStorage.setItem('loggedin_tahun_masuk', $scope.user_details.tahun_masuk);
+  // sessionStorage.setItem('loggedin_kelas', $scope.user_details.kelas_id);
+
+		//logout function
+	$scope.logout=function(){
+
+		var confirmPopup = $ionicPopup.confirm({
+			title:'Log Out',
+			template: '<p style="text-align:center;">Are you sure to logout ?</p>'
+		});
+
+		confirmPopup.then(function(res) {
+			if(res) {
+				delete sessionStorage.loggedin_id;
+        delete sessionStorage.beranda;
+        delete sessionStorage.beranda_p;
+        delete sessionStorage.tugas;
+        delete sessionStorage.tugas_p;
+        delete sessionStorage.materi;
+        delete sessionStorage.materi_p;
+        delete sessionStorage.bio;
+        delete sessionStorage.bio_p;
+				delete sessionStorage.loggedin_siswa;
+				delete sessionStorage.loggedin_pengajar;
+        delete sessionStorage.loggedin_level;
+				delete sessionStorage.loggedin_nis;
+				delete sessionStorage.loggedin_nama;
+        delete sessionStorage.loggedin_nama_siswa;
+				delete sessionStorage.loggedin_jenis_kelamin;
+				delete sessionStorage.loggedin_tempat_lahir;
+        delete sessionStorage.loggedin_tgl_lahir;
+				delete sessionStorage.loggedin_agama;
+				delete sessionStorage.loggedin_alamat;
+				delete sessionStorage.loggedin_tahun_masuk;
+				delete sessionStorage.loggedin_kelas;
+
+				// remove the profile page backlink after logout.
+				$ionicHistory.nextViewOptions({
+					disableAnimate: true,
+					disableBack: true
+				});
+
+				// After logout you will be redirected to the menu page,with no backlink
+				$state.go('login', {}, {location: "replace", reload: true});
+			} else {
+				console.log('You are not sure');
+			}
+		});
+
+	};
 
 console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
 })
@@ -381,6 +445,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
             ) {
 
             $scope.form.file=$scope.files1[0];
+          }
 
               $http({
                 method : "POST",
@@ -414,12 +479,12 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
                           template: 'Gagal Hore'
                       });
               })
-            } else{
-                $ionicPopup.alert({
-                          title: 'Waduh',
-                          template: 'Harus benar mengisi data'
-                      });
-            }
+            // } else{
+            //     $ionicPopup.alert({
+            //               title: 'Waduh',
+            //               template: 'Harus benar mengisi data'
+            //           });
+            // }
           };
 
           angular.element(document).ready(function(){

@@ -18,7 +18,7 @@
     </ion-header-bar>
     <ion-content class="padding" style="background: linear-gradient(to bottom, #0099ff 0%, #66ff99 100%);">
     <div style="padding-bottom: 10px;">
-     <img ng-src="img/logo.png" style="display: block; width: 80%; height: auto; margin-left: auto; margin-right: auto;">
+     <img ng-src="img/logo_side.png" style="display: block; width: 80%; height: auto; margin-left: auto; margin-right: auto;">
     </div>
 
       <ion-list style="text-align: left;">
@@ -60,15 +60,15 @@
         </ion-item>
         <ion-item menu-close ui-sref="app.biodata" ng-if="bio" style="font-size: 20px;">
         <i class="icon ion-ios-body"></i>
-          Biodata
+          Akun
         </ion-item>
         <ion-item menu-close ui-sref="app.biodata_p" ng-if="bio_p" style="font-size: 20px;">
         <i class="icon ion-ios-body"></i>
-          Biodata
+          Akun
         </ion-item>
       </ion-list>
 
-      <a ui-sref="login" class="button button-block button-assertive">
+      <a ng-click="logout()" class="button button-block button-assertive">
       Logout
       </a>
 

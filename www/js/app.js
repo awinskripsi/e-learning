@@ -45,7 +45,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
   })
 
     .state('app', {
-    cache: false,
+    // cache: false,
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
@@ -228,6 +228,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ion-datetime-picker'
       }
     }
   })
+
 
   .state('app.jawabupload', {
     cache: false,
