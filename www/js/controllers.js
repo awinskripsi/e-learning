@@ -637,7 +637,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
   .controller('addTugasCtrl', function($scope, $state, $ionicPopup, $http) {
     $scope.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
 
-    $http.get('http://192.168.43.222/api_elearning/getmapel.php')
+    $http.get('http://192.168.43.222/api_elearning/getmapel.php?pengajar_id='+$scope.pengajar_id)
     .then(function(response){
       $scope.mapel = response.data;
       console.log($scope.mapel);
@@ -649,7 +649,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       console.log($scope.pengajar_id);
     })
 
-    $http.get('http://192.168.43.222/api_elearning/getkelas.php')
+    $http.get('http://192.168.43.222/api_elearning/getkelas.php?pengajar_id='+$scope.pengajar_id)
     .then(function(response){
       $scope.kelas = response.data;
       console.log($scope.kelas);
@@ -752,7 +752,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.kelas_id = sessionStorage.getItem('loggedin_kelas');
     $scope.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
 
-    $http.get('http://192.168.43.222/api_elearning/getmapel.php')
+    $http.get('http://192.168.43.222/api_elearning/getmapel.php?pengajar_id='+$scope.pengajar_id)
     .then(function(response){
       $scope.mapel = response.data;
       console.log($scope.mapel);
@@ -764,7 +764,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       console.log($scope.pengajar);
     })
 
-    $http.get('http://192.168.43.222/api_elearning/getkelas.php')
+    $http.get('http://192.168.43.222/api_elearning/getkelas.php?pengajar_id='+$scope.pengajar_id)
     .then(function(response){
       $scope.kelas = response.data;
       console.log($scope.kelas);
@@ -1125,7 +1125,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     .controller('addMateriCtrl', function($scope, $state, $ionicPopup, $http) {
       $scope.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
 
-      $http.get('http://192.168.43.222/api_elearning/getmapel.php')
+      $http.get('http://192.168.43.222/api_elearning/getmapel.php?pengajar_id='+$scope.pengajar_id)
       .then(function(response){
         $scope.mapel = response.data;
         console.log($scope.mapel);
@@ -1137,7 +1137,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
         console.log($scope.pengajar_id);
       })
 
-      $http.get('http://192.168.43.222/api_elearning/getkelas.php')
+      $http.get('http://192.168.43.222/api_elearning/getkelas.php?pengajar_id='+$scope.pengajar_id)
       .then(function(response){
         $scope.kelas = response.data;
         console.log($scope.kelas);
@@ -1229,7 +1229,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
     $scope.kelas_id = sessionStorage.getItem('loggedin_kelas');
     $scope.pengajar_id = sessionStorage.getItem('loggedin_pengajar');
 
-    $http.get('http://192.168.43.222/api_elearning/getmapel.php')
+    $http.get('http://192.168.43.222/api_elearning/getmapel.php?pengajar_id='+$scope.pengajar_id)
     .then(function(response){
       $scope.mapel = response.data;
       console.log($scope.mapel);
@@ -1241,7 +1241,7 @@ console.log('akses level =>', sessionStorage.getItem('loggedin_level'));
       console.log($scope.pengajar);
     })
 
-    $http.get('http://192.168.43.222/api_elearning/getkelas.php')
+    $http.get('http://192.168.43.222/api_elearning/getkelas.php?pengajar_id='+$scope.pengajar_id)
     .then(function(response){
       $scope.kelas = response.data;
       console.log($scope.kelas);
